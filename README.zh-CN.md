@@ -1,5 +1,7 @@
 # ReActicle
 
+![ReActicle banner](./public/img/banner.jpeg)
+
 > **AI 时代的 HTML 文章协议** — 让 AI 不再手写裸 HTML，而是用一套受限、语义化的 React 组件契约，生成稳定、漂亮、可交互、自包含的 HTML 文章与报告。
 
 [English](./README.md) · [npm 包](https://www.npmjs.com/package/reacticle) · [配套 Skill：`beautiful-article`](https://github.com/ConardLi/garden-skills)

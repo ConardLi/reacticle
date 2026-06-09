@@ -1,5 +1,7 @@
 # ReActicle
 
+![ReActicle banner](./public/img/banner.jpeg)
+
 > **An HTML article protocol for the AI era** — instead of letting AI hand-write raw HTML, give it a constrained, semantic React component contract that produces stable, beautiful, interactive, self-contained HTML articles and reports.
 
 [中文文档](./README.zh-CN.md) · [npm package](https://www.npmjs.com/package/reacticle) · [Companion skill: `beautiful-article`](https://github.com/ConardLi/garden-skills)
