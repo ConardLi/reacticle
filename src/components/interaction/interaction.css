@@ -1,0 +1,79 @@
+/* ---- Detail: a ruled disclosure, no chrome but a single marker ---- */
+.ra-detail {
+  border-top: 1px solid var(--ra-color-border);
+  border-bottom: 1px solid var(--ra-color-border);
+}
+
+.ra-detail__summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: var(--ra-space-2);
+  padding: var(--ra-space-3) 0;
+  font-size: var(--ra-text-base);
+  color: var(--ra-color-heading);
+}
+
+.ra-detail__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ra-detail__summary::before {
+  content: "+";
+  font-family: var(--ra-font-label);
+  color: var(--ra-color-accent);
+  width: 1em;
+  flex: none;
+}
+
+.ra-detail[open] .ra-detail__summary::before {
+  content: "−";
+}
+
+.ra-detail__body {
+  padding: 0 0 var(--ra-space-3) var(--ra-space-4);
+  color: var(--ra-color-text);
+  line-height: var(--ra-leading-normal);
+}
+
+/* ---- Tabs: underlined tabs, no boxed chrome ---- */
+.ra-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-4);
+}
+
+.ra-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ra-space-5);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+}
+
+.ra-tabs__tab {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0 0 var(--ra-space-2);
+  margin-bottom: -1px;
+  cursor: pointer;
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  letter-spacing: var(--ra-tracking-wide);
+  color: var(--ra-color-muted);
+  border-bottom: 2px solid transparent;
+}
+
+.ra-tabs__tab:hover {
+  color: var(--ra-color-text);
+}
+
+.ra-tabs__tab--active {
+  color: var(--ra-color-heading);
+  border-bottom-color: var(--ra-color-accent);
+}
+
+.ra-tabs__panel {
+  min-width: 0;
+}

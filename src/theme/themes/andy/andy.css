@@ -1,0 +1,268 @@
+/*
+ * Theme: andy — Headspace / Pumpkin orange（calm, warm, rounded）
+ * See andy.md for the full design rationale.
+ *
+ * The serene, pillowy register, named for Headspace's guiding voice. Same DOM
+ * and token contract as every other theme, but the opposite temperament to the
+ * austere ones: warm cream paper, a friendly Pumpkin orange, soft warm-grey
+ * ink, fully rounded sans (Quicksand display + Nunito body, à la Aperçu).
+ *
+ *  - The ONLY theme with generous radius AND soft warm shadows — its identity.
+ *  - Section numerals are filled orange circles (the "imperfect circle").
+ *  - Callouts and quotes are soft tinted pillows, not ruled text.
+ */
+[data-theme="andy"] {
+  /* The bright hero orange, kept local: text-carrying accent is deepened for
+     legibility, while fills (circles, pills) use the true Pumpkin. */
+  --hs-orange: #ff7e1d;
+  --hs-orange-soft: #ffe9d6;
+
+  /* Surfaces & ink — warm cream paper, soft warm-grey ink (never pure black). */
+  --ra-color-bg: #fff7ef;
+  --ra-color-bg-tint: #fff1e4;
+  --ra-color-surface: #fdeede;
+  --ra-color-surface-2: #f9e3d0;
+  --ra-color-text: #443d36;
+  --ra-color-heading: #2a2420;
+  --ra-color-muted: #8c8175;
+  --ra-color-faint: #b6ab9d;
+  --ra-color-border: #f0e3d4;
+  --ra-color-border-strong: #e6d3bd;
+
+  /* Accent is a deepened burnt-orange so links/structure stay legible on cream;
+     the bright Pumpkin (--hs-orange) is reserved for fills. */
+  --ra-color-accent: #e0590b;
+  --ra-color-accent-strong: #c24a06;
+  --ra-color-accent-contrast: #ffffff;
+  --ra-color-accent-soft: #ffe4cd;
+
+  --ra-color-risk: #e0473d;
+  --ra-color-risk-soft: #ffe1de;
+  --ra-color-warn: #e0473d;
+  --ra-color-warn-soft: #ffe1de;
+  --ra-color-success: #4f9d69;
+  --ra-color-success-soft: #e0f0e4;
+  /* A friendly blue keeps "note" calm and distinct from the orange brand. */
+  --ra-color-info: #3d83cc;
+  --ra-color-info-soft: #e3eefb;
+
+  /* Typography — two rounded sans: geometric Quicksand display, humanist Nunito body. */
+  --ra-font-body: "Nunito", "Quicksand", "Helvetica Neue", "PingFang SC",
+    system-ui, sans-serif;
+  --ra-font-heading: "Quicksand", "Nunito", "Helvetica Neue", "PingFang SC",
+    system-ui, sans-serif;
+  --ra-font-label: var(--ra-font-heading);
+  --ra-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* An airy, comfortable scale. */
+  --ra-text-xs: 0.76rem;
+  --ra-text-sm: 0.86rem;
+  --ra-text-base: 1.05rem;
+  --ra-text-lg: 1.22rem;
+  --ra-text-xl: 1.5rem;
+  --ra-text-2xl: 1.9rem;
+  --ra-text-3xl: 2.35rem;
+  --ra-text-4xl: 2.9rem;
+
+  --ra-leading-tight: 1.15;
+  --ra-leading-snug: 1.45;
+  --ra-leading-normal: 1.7;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 600;
+  --ra-weight-semibold: 700;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 800;
+
+  /* Rounded headings read friendliest at a real bold. */
+  --ra-weight-display: 700;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 700;
+
+  --ra-tracking-tighter: -0.01em;
+  --ra-tracking-tight: -0.005em;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.02em;
+  --ra-tracking-caps: 0.04em;
+
+  /* Generous, unhurried rhythm — the page breathes. */
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.85rem;
+  --ra-space-4: 1.15rem;
+  --ra-space-5: 1.65rem;
+  --ra-space-6: 2.2rem;
+  --ra-space-7: 3.2rem;
+  --ra-space-8: 4.5rem;
+  --ra-space-9: 6rem;
+
+  /* Big radius + soft warm shadows — the signature no other theme uses. */
+  --ra-radius-sm: 12px;
+  --ra-radius-md: 20px;
+  --ra-radius-lg: 30px;
+  --ra-radius-xl: 40px;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: 0 1px 3px rgba(58, 42, 20, 0.06);
+  --ra-shadow-md: 0 10px 30px -12px rgba(224, 89, 11, 0.2);
+  --ra-shadow-lg: 0 22px 50px -18px rgba(224, 89, 11, 0.24);
+
+  /* Calm, smooth, slightly slow — nothing is in a hurry here. */
+  --ra-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ra-transition: 240ms var(--ra-ease);
+
+  --ra-content-width: 1080px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * andy — signature component anatomy (Headspace: soft, round, calm)
+ *
+ * Same DOM and class contract as every other theme; only the *treatment*
+ * diverges. The identity: rounded everything, soft warm shadows, filled orange
+ * circles for numerals, pillowy tinted callouts. Components still only read
+ * --ra-* tokens; authors still pick a theme.
+ * ========================================================================== */
+
+/* Hero — a friendly rounded title with a soft orange pill eyebrow. */
+[data-theme="andy"] .ra-hero {
+  gap: var(--ra-space-4);
+  padding-bottom: var(--ra-space-5);
+}
+[data-theme="andy"] .ra-hero__eyebrow {
+  align-self: flex-start;
+  width: fit-content;
+  background: var(--hs-orange-soft);
+  color: var(--ra-color-accent-strong);
+  padding: 0.38em 0.95em;
+  border-radius: var(--ra-radius-full);
+  font-weight: var(--ra-weight-semibold);
+}
+[data-theme="andy"] .ra-hero__title {
+  line-height: 1.1;
+}
+[data-theme="andy"] .ra-hero__subtitle {
+  color: var(--ra-color-muted);
+  max-width: 44rem;
+}
+
+/* Lead — calm rounded sans; drop the serif small-caps first line. */
+[data-theme="andy"] .ra-lead {
+  font-weight: var(--ra-weight-medium);
+}
+[data-theme="andy"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — THE signature: the numeral sits inside a filled orange circle. */
+[data-theme="andy"] .ra-section__head {
+  align-items: center;
+  gap: var(--ra-space-3);
+}
+[data-theme="andy"] .ra-section__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4em;
+  height: 2.4em;
+  background: var(--hs-orange);
+  color: var(--ra-color-heading);
+  border-radius: var(--ra-radius-full);
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-bold);
+  font-size: var(--ra-text-lg);
+  box-shadow: var(--ra-shadow-sm);
+}
+[data-theme="andy"] .ra-subsection__index {
+  color: var(--ra-color-accent);
+  font-weight: var(--ra-weight-bold);
+}
+
+/* Aside — a soft tinted pillow: no rules, big radius, a gentle shadow. */
+[data-theme="andy"] .ra-aside {
+  border: none;
+  border-radius: var(--ra-radius-lg);
+  background: var(--ra-aside-soft);
+  box-shadow: var(--ra-shadow-sm);
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+
+/* Quote — a soft peach panel with a rounded form, not a hard left rule. */
+[data-theme="andy"] .ra-quote {
+  border-left: none;
+  background: var(--hs-orange-soft);
+  border-radius: var(--ra-radius-lg);
+  padding: var(--ra-space-5);
+}
+
+/* Table — a soft, generously padded, rounded card. The base table is a bare
+   line-grid with no side padding (cramped here); andy gives it room to breathe. */
+[data-theme="andy"] .ra-table__scroll {
+  border: 1px solid var(--ra-color-border);
+  border-radius: var(--ra-radius-lg);
+  overflow: auto;
+}
+[data-theme="andy"] .ra-table__table th,
+[data-theme="andy"] .ra-table__table td {
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+[data-theme="andy"] .ra-table__table thead th {
+  background: var(--hs-orange-soft);
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+  border-bottom: none;
+}
+[data-theme="andy"] .ra-table__table tbody td {
+  border-bottom: 1px solid var(--ra-color-border);
+}
+[data-theme="andy"] .ra-table__caption {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Conclusion — a soft closing panel with round orange takeaway dots. */
+[data-theme="andy"] .ra-conclusion {
+  border-top: none;
+  background: var(--hs-orange-soft);
+  border-radius: var(--ra-radius-lg);
+  padding: var(--ra-space-5);
+}
+[data-theme="andy"] .ra-conclusion__takeaways li::before {
+  content: "●";
+  color: var(--hs-orange);
+}
+
+/* Links — orange, with a soft peach pill that grows in on hover. Scoped to
+   article prose only, so it never bleeds onto the site chrome (nav / TOC). */
+[data-theme="andy"] .ra-article a {
+  color: var(--ra-color-accent);
+  text-decoration-color: var(--ra-color-accent-soft);
+  padding: 0 0.12em;
+  border-radius: var(--ra-radius-sm);
+  transition: background var(--ra-transition);
+}
+[data-theme="andy"] .ra-article a:hover {
+  background: var(--hs-orange-soft);
+  text-decoration-color: var(--ra-color-accent);
+}
+
+/* TOC — mark the active entry with a soft pill. */
+[data-theme="andy"] .ra-toc__title {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="andy"] .ra-toc__index {
+  color: var(--ra-color-accent);
+}
+[data-theme="andy"] .ra-toc__item--active a {
+  color: var(--ra-color-accent-strong);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="andy"] .ra-toc__item--active .ra-toc__label {
+  background: var(--hs-orange-soft);
+  color: var(--ra-color-accent-strong);
+  padding: 0.1em 0.6em;
+  border-radius: var(--ra-radius-full);
+  text-decoration: none;
+}

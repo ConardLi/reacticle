@@ -1,0 +1,172 @@
+/* ---- Table: generic two-dimensional information ---- */
+.ra-table {
+  margin-block: var(--ra-space-6);
+  margin-inline: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+.ra-table__caption {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-muted);
+}
+.ra-table__scroll {
+  overflow-x: auto;
+  border-top: 1px solid var(--ra-color-border-strong);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+}
+.ra-table__table {
+  width: 100%;
+  min-width: max-content;
+  border-collapse: collapse;
+  font-size: var(--ra-text-sm);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.ra-table__table th,
+.ra-table__table td {
+  padding: var(--ra-space-2) var(--ra-space-4) var(--ra-space-2) 0;
+  text-align: left;
+  vertical-align: baseline;
+}
+.ra-table__table thead th {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ra-color-muted);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+  padding-bottom: var(--ra-space-2);
+}
+.ra-table__table tbody td {
+  color: var(--ra-color-text);
+  border-bottom: 1px solid var(--ra-color-border);
+}
+.ra-table__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.ra-table__cell--center {
+  text-align: center !important;
+}
+.ra-table__cell--right {
+  text-align: right !important;
+}
+.ra-table__source {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-faint);
+  text-align: right;
+}
+.ra-table__source::before {
+  content: "Source: ";
+}
+.ra-table__missing {
+  padding: var(--ra-space-4);
+  border: 1px dashed var(--ra-color-border-strong);
+  background: var(--ra-color-surface);
+}
+
+/* ---- Image ---- */
+.ra-image {
+  /* Generous separation so a figure stands clearly apart from prose. */
+  margin-block: var(--ra-space-7);
+  margin-inline: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+.ra-image__frame {
+  margin: 0 auto;
+  width: 100%;
+}
+.ra-image__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid var(--ra-color-border);
+  border-radius: var(--ra-radius-md);
+  background: var(--ra-color-surface);
+}
+.ra-image__placeholder {
+  display: flex;
+  justify-content: center;
+  padding: var(--ra-space-6) 0;
+  border: 1px dashed var(--ra-color-border-strong);
+  background: var(--ra-color-surface);
+}
+.ra-image__alt-missing {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+}
+.ra-image__caption {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-muted);
+  text-align: center;
+}
+.ra-image__credit {
+  color: var(--ra-color-faint);
+}
+.ra-image__credit::before {
+  content: " · ";
+}
+
+/* ---- Video / Audio ---- */
+.ra-media {
+  margin-block: var(--ra-space-6);
+  margin-inline: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+.ra-media__frame {
+  margin: 0 auto;
+  width: 100%;
+}
+.ra-video__player {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  object-fit: cover;
+  border: 1px solid var(--ra-color-border);
+  border-radius: var(--ra-radius-md);
+  background: var(--ra-color-surface);
+}
+.ra-audio__frame {
+  padding: var(--ra-space-3);
+  border: 1px solid var(--ra-color-border);
+  border-radius: var(--ra-radius-md);
+  background: var(--ra-color-surface);
+}
+.ra-audio__player {
+  display: block;
+  width: 100%;
+}
+.ra-media__placeholder {
+  display: flex;
+  justify-content: center;
+  padding: var(--ra-space-6) 0;
+  border: 1px dashed var(--ra-color-border-strong);
+  background: var(--ra-color-surface);
+}
+.ra-media__missing {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+}
+.ra-media__caption {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-muted);
+  text-align: center;
+}
+.ra-media__credit {
+  color: var(--ra-color-faint);
+}
+.ra-media__credit::before {
+  content: " · ";
+}

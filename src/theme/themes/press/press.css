@@ -1,0 +1,105 @@
+/*
+ * Theme: press — Stripe Press / 人文出版派（Warm humanist editorial）
+ * See press.md for the full design rationale.
+ *
+ * Same component anatomy as tufte (line-not-box, inline captions, no
+ * chart-junk). The difference lives entirely in the token contract:
+ *  - A creamier, brighter book paper; larger type; looser leading; more air.
+ *  - One confident accent (oxblood) used more freely than tufte's quiet slate.
+ *  - A contemporary transitional serif (Newsreader) instead of old-style.
+ */
+[data-theme="press"] {
+  /* Surfaces & ink — a brighter, creamier book page. */
+  --ra-color-bg: #fbf7ee;
+  --ra-color-bg-tint: #fbf7ee;
+  --ra-color-surface: #f3ecdd;
+  --ra-color-surface-2: #eae0cd;
+  --ra-color-text: #211e18;
+  --ra-color-heading: #171410;
+  --ra-color-muted: #6a6256;
+  --ra-color-faint: #97907f;
+  --ra-color-border: #e0d6c0;
+  --ra-color-border-strong: #cdc1a6;
+
+  /* The single confident accent — oxblood / bordeaux. Carries structure:
+     section numbers, emphasis rules, Hero, links inside components. */
+  --ra-color-accent: #7b1e22;
+  --ra-color-accent-strong: #5a1418;
+  --ra-color-accent-contrast: #fbf7ee;
+  --ra-color-accent-soft: #f0e2df;
+
+  /* Risk runs a hotter vermilion so it reads as alarm, not brand. */
+  --ra-color-risk: #c23a1e;
+  --ra-color-risk-soft: #f5e3db;
+  --ra-color-warn: #c23a1e;
+  --ra-color-warn-soft: #f5e3db;
+  --ra-color-success: #415a3a;
+  --ra-color-success-soft: #e7ecdd;
+  --ra-color-info: #7b1e22;
+  --ra-color-info-soft: #f0e2df;
+
+  /* Typography — contemporary transitional serif; sans only for tiny labels. */
+  --ra-font-body: "Newsreader", "Source Serif 4", "Spectral", "Iowan Old Style",
+    Georgia, "Songti SC", "STSong", serif;
+  --ra-font-heading: var(--ra-font-body);
+  --ra-font-label: "Söhne", ui-sans-serif, system-ui, -apple-system,
+    "Helvetica Neue", "PingFang SC", sans-serif;
+  --ra-font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* A larger scale than tufte — read from an arm's length, like a real book. */
+  --ra-text-xs: 0.75rem;
+  --ra-text-sm: 0.85rem;
+  --ra-text-base: 1.0625rem;
+  --ra-text-lg: 1.2rem;
+  --ra-text-xl: 1.45rem;
+  --ra-text-2xl: 1.85rem;
+  --ra-text-3xl: 2.3rem;
+  --ra-text-4xl: 3rem;
+
+  --ra-leading-tight: 1.15;
+  --ra-leading-snug: 1.45;
+  --ra-leading-normal: 1.7;
+
+  /* Newsreader ships 400/500/600 here — keep bold at 600 to avoid faux-bold. */
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 600;
+  --ra-weight-black: 600;
+
+  /* A whisper of negative tracking keeps the big serif headings crisp. */
+  --ra-tracking-tighter: -0.015em;
+  --ra-tracking-tight: -0.01em;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.02em;
+  --ra-tracking-caps: 0.08em;
+
+  /* Same base steps as tufte, with extra air in the upper register. */
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2.25rem;
+  --ra-space-7: 3.25rem;
+  --ra-space-8: 4.5rem;
+  --ra-space-9: 6rem;
+
+  /* Editorial-flat: no radius, no shadow — but a touch more "crafted" motion. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ra-transition: 160ms var(--ra-ease);
+
+  /* A more centered, book-like page. */
+  /* Reading width is owned by <Article width> (theme-independent), not here. */
+  --ra-content-width: 1080px;
+  --ra-toc-width: 13rem;
+}

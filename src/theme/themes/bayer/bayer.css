@@ -1,0 +1,296 @@
+/*
+ * Theme: bayer — Herbert Bayer / Bauhaus (Dessau, Universal alphabet)
+ * See bayer.md for the full design rationale.
+ *
+ * The loud, rational one: warm Bauhaus paper, near-black ink, and the three
+ * primaries (red / blue / yellow) used as structural colour — not decoration.
+ * Identity comes from geometry: numerals inside filled blue circles, a
+ * red-yellow-blue masthead bar, lowercase grotesque kickers, hard square
+ * blocks. Playful but disciplined; for explainers, manifestos, teaching,
+ * brand-y product writing that wants to feel constructed, not corporate.
+ *
+ *  - Primaries carry meaning: blue = structure, red = risk, yellow = highlight.
+ *  - Geometric sans (Josefin / Poppins); hierarchy from weight + shape.
+ *  - Circles, squares and a tricolor rule are the signature, not gradients.
+ */
+[data-theme="bayer"] {
+  /* Bauhaus primaries, kept as theme-local names; mapped onto --ra-* below. */
+  --by-red: #e6332a;
+  --by-blue: #1f49c0;
+  --by-yellow: #ffce1f;
+  --by-yellow-soft: #fbeeb6;
+
+  /* Surfaces & ink — warm constructed paper, true near-black. */
+  --ra-color-bg: #f4f0e6;
+  --ra-color-bg-tint: #f4f0e6;
+  --ra-color-surface: #ece7d8;
+  --ra-color-surface-2: #e1dbc8;
+  --ra-color-text: #1b1a16;
+  --ra-color-heading: #100f0c;
+  --ra-color-muted: #57534a;
+  --ra-color-faint: #8a8576;
+  --ra-color-border: #d4cdb8;
+  --ra-color-border-strong: #b9b199;
+
+  /* Blue is the structural accent (links, section circles); red is risk;
+     yellow is highlight and lives in --by-yellow (never as text colour). */
+  --ra-color-accent: #1f49c0;
+  --ra-color-accent-strong: #163a9e;
+  --ra-color-accent-contrast: #ffffff;
+  --ra-color-accent-soft: #dfe5f6;
+
+  --ra-color-risk: #cf2a22;
+  --ra-color-risk-soft: #f8ddd9;
+  --ra-color-warn: #cf2a22;
+  --ra-color-warn-soft: #f8ddd9;
+  --ra-color-success: #2c6e49;
+  --ra-color-success-soft: #dcebe0;
+  --ra-color-info: #1f49c0;
+  --ra-color-info-soft: #dfe5f6;
+
+  /* Typography — geometric sans throughout; Bauhaus favoured one lowercase
+     alphabet, so kickers run lowercase (see anatomy). */
+  --ra-font-body: "Poppins", "Hanken Grotesk", "PingFang SC", system-ui,
+    sans-serif;
+  --ra-font-heading: "Josefin Sans", "Poppins", "PingFang SC", system-ui,
+    sans-serif;
+  --ra-font-label: "Poppins", "Hanken Grotesk", "PingFang SC", system-ui,
+    sans-serif;
+  --ra-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.85rem;
+  --ra-text-base: 1.04rem;
+  --ra-text-lg: 1.2rem;
+  --ra-text-xl: 1.45rem;
+  --ra-text-2xl: 1.9rem;
+  --ra-text-3xl: 2.45rem;
+  --ra-text-4xl: 3.05rem;
+
+  --ra-leading-tight: 1.08;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.65;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 700;
+
+  --ra-weight-display: 700;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 600;
+
+  --ra-tracking-tighter: -0.01em;
+  --ra-tracking-tight: 0;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.04em;
+  --ra-tracking-caps: 0.12em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* Hard geometry: square blocks (radius 0), perfect circles for numerals. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: cubic-bezier(0.2, 0, 0, 1);
+  --ra-transition: 130ms var(--ra-ease);
+
+  --ra-content-width: 1120px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * bayer — signature component anatomy (Bauhaus)
+ * ========================================================================== */
+
+/* Hero — a red-yellow-blue masthead bar under a bold geometric title, and a
+   yellow-block kicker set lowercase. */
+[data-theme="bayer"] .ra-hero {
+  border-top: none;
+  border-bottom: 6px solid var(--ra-color-heading);
+  border-image: linear-gradient(
+      90deg,
+      var(--by-red) 0 33.33%,
+      var(--by-yellow) 33.33% 66.66%,
+      var(--by-blue) 66.66% 100%
+    )
+    1;
+  padding-bottom: var(--ra-space-5);
+  gap: var(--ra-space-3);
+}
+[data-theme="bayer"] .ra-hero__eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  text-transform: lowercase;
+  letter-spacing: var(--ra-tracking-wide);
+  color: var(--ra-color-heading);
+  background: var(--by-yellow);
+  padding: 0.2em 0.6em;
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="bayer"] .ra-hero__title {
+  font-size: calc(var(--ra-text-4xl) * 1.05);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+}
+[data-theme="bayer"] .ra-hero__subtitle {
+  font-size: var(--ra-text-lg);
+  color: var(--ra-color-muted);
+  max-width: 42rem;
+}
+
+[data-theme="bayer"] .ra-lead {
+  font-weight: var(--ra-weight-medium);
+}
+[data-theme="bayer"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — THE signature: a bold numeral inside a filled blue circle. */
+[data-theme="bayer"] .ra-section__head {
+  align-items: center;
+  gap: var(--ra-space-4);
+}
+[data-theme="bayer"] .ra-section__index {
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-bold);
+  font-size: var(--ra-text-base);
+  color: var(--ra-color-accent-contrast);
+  background: var(--ra-color-accent);
+  width: 2.5em;
+  height: 2.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ra-radius-full);
+  flex: none;
+}
+[data-theme="bayer"] .ra-section__title {
+  letter-spacing: -0.01em;
+}
+
+/* Subsection — a blue square bullet ordinal before a geometric heading. */
+[data-theme="bayer"] .ra-subsection__index {
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-accent);
+}
+
+/* Aside — a hard primary-tinted block with a thick colour bar and bold label.
+   Principle is promoted to a black-on-yellow Bauhaus callout. */
+[data-theme="bayer"] .ra-aside {
+  border-left: 6px solid var(--ra-aside-accent);
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+  background: var(--ra-aside-soft);
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+[data-theme="bayer"] .ra-aside--principle {
+  --ra-aside-accent: var(--ra-color-heading);
+  --ra-aside-soft: var(--by-yellow-soft);
+}
+[data-theme="bayer"] .ra-aside__label {
+  font-weight: var(--ra-weight-bold);
+  letter-spacing: var(--ra-tracking-wide);
+}
+
+/* Quote — a thick blue rule and a confident geometric voice. */
+[data-theme="bayer"] .ra-quote {
+  border-left: 6px solid var(--ra-color-accent);
+  padding-left: var(--ra-space-4);
+}
+[data-theme="bayer"] .ra-quote__text {
+  font-family: var(--ra-font-heading);
+  font-size: var(--ra-text-xl);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Table — a solid blue header band with white heads; padded square cells. */
+[data-theme="bayer"] .ra-table__scroll {
+  border-top: none;
+  border-bottom: 2px solid var(--ra-color-heading);
+}
+[data-theme="bayer"] .ra-table__table th,
+[data-theme="bayer"] .ra-table__table td {
+  padding: var(--ra-space-3) var(--ra-space-4);
+}
+[data-theme="bayer"] .ra-table__table thead th {
+  background: var(--ra-color-accent);
+  color: var(--ra-color-accent-contrast);
+  font-weight: var(--ra-weight-bold);
+  border-bottom: none;
+}
+[data-theme="bayer"] .ra-table__table tbody td {
+  border-bottom: 1px solid var(--ra-color-border);
+}
+[data-theme="bayer"] .ra-table__caption {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Conclusion — close on the same tricolor masthead bar. */
+[data-theme="bayer"] .ra-conclusion {
+  border-top: 6px solid var(--ra-color-heading);
+  border-image: linear-gradient(
+      90deg,
+      var(--by-red) 0 33.33%,
+      var(--by-yellow) 33.33% 66.66%,
+      var(--by-blue) 66.66% 100%
+    )
+    1;
+}
+[data-theme="bayer"] .ra-conclusion__label {
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-accent);
+}
+[data-theme="bayer"] .ra-conclusion__takeaways li::before {
+  content: "■";
+  font-size: 0.7em;
+  color: var(--ra-color-accent);
+}
+
+/* Links — Bauhaus blue, bold underline. */
+[data-theme="bayer"] .ra-article a {
+  color: var(--ra-color-accent);
+  font-weight: var(--ra-weight-semibold);
+  text-decoration-color: var(--ra-color-accent-soft);
+}
+[data-theme="bayer"] .ra-article a:hover {
+  text-decoration-color: var(--ra-color-accent);
+}
+
+/* TOC — bold blue active entry, ruled head. */
+[data-theme="bayer"] .ra-toc__title {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+  border-bottom: 2px solid var(--ra-color-heading);
+}
+[data-theme="bayer"] .ra-toc__index {
+  color: var(--ra-color-accent);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="bayer"] .ra-toc__item--active a {
+  color: var(--ra-color-accent-strong);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="bayer"] .ra-toc__item--active .ra-toc__label {
+  text-decoration-color: var(--ra-color-accent);
+}

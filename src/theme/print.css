@@ -1,0 +1,62 @@
+/* Print / "导出 PDF" styles. Use the browser's Print -> Save as PDF. */
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  /* Preserve the selected theme's paper color in exported PDFs. */
+  .ra-root {
+    background: var(--ra-color-bg, #ffffff) !important;
+    color: var(--ra-color-text, #111111) !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    position: relative;
+    z-index: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 0.45in !important;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .ra-root::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--ra-color-bg, #ffffff);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Hide any non-content chrome (export toolbar, gallery bar). */
+  .ra-export-bar,
+  .gx-reader__bar,
+  .gx-reader__nav,
+  .no-print {
+    display: none !important;
+  }
+
+  .ra-article {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Keep semantic blocks from being split across pages where possible. */
+  .ra-card,
+  .ra-risk,
+  .ra-decision,
+  .ra-checkpoint,
+  .ra-compare,
+  .ra-codeexplain,
+  .ra-actionlist {
+    break-inside: avoid;
+  }
+
+  .ra-section {
+    break-inside: avoid-page;
+  }
+
+  a {
+    color: inherit;
+  }
+}

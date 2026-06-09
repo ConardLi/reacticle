@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-report
+*.local
+.DS_Store
+.vite
+.cursor
+docs/
+file/

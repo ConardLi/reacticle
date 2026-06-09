@@ -1,0 +1,132 @@
+/*
+ * Theme: tufte — Edward Tufte / Maximum Data-Ink
+ * See tufte.md for the full design rationale.
+ *
+ * Principles encoded here:
+ *  - Maximize the data-ink ratio: no card fills, no shadows, no radius.
+ *  - Warm paper ground, near-black ink, exactly two data colors.
+ *  - Old-style serif body; humanist sans for labels/annotations only.
+ *  - Faint reference rules; meaning carried by typography & whitespace.
+ */
+[data-theme="tufte"] {
+  /* Surfaces & ink */
+  --ra-color-bg: #fbfaf6;
+  --ra-color-bg-tint: #fbfaf6;
+  --ra-color-surface: #f3f1e9;
+  --ra-color-surface-2: #ebe8dd;
+  --ra-color-text: #1b1b1a;
+  --ra-color-heading: #111110;
+  --ra-color-muted: #5c5550;
+  --ra-color-faint: #8a847a;
+  --ra-color-border: #d8d2c2;
+  --ra-color-border-strong: #c3bca8;
+
+  /* Data colors — only two. Slate is the quiet structural color; warm red
+     is reserved for genuine emphasis / attention (it must encode meaning). */
+  --ra-color-accent: #3e4a5c;
+  --ra-color-accent-strong: #2b3340;
+  --ra-color-accent-contrast: #fbfaf6;
+  --ra-color-accent-soft: #e7e9ed;
+
+  --ra-color-risk: #a6300e;
+  --ra-color-risk-soft: #f0e3dd;
+  --ra-color-warn: #a6300e;
+  --ra-color-warn-soft: #f0e3dd;
+  --ra-color-success: #4a5a3f;
+  --ra-color-success-soft: #e8eadf;
+  --ra-color-info: #3e4a5c;
+  --ra-color-info-soft: #e7e9ed;
+
+  /* Typography — old-style serif body, humanist sans for labels. */
+  --ra-font-body: "et-book", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, "Songti SC", "STSong", serif;
+  --ra-font-heading: var(--ra-font-body);
+  --ra-font-label: "Gill Sans", "Gill Sans MT", "Lato", "Avenir Next",
+    "Helvetica Neue", system-ui, sans-serif;
+  --ra-font-mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Modest scale — Tufte uses small body; the reader leans in. */
+  --ra-text-xs: 0.72rem;
+  --ra-text-sm: 0.82rem;
+  --ra-text-base: 1rem;
+  --ra-text-lg: 1.15rem;
+  --ra-text-xl: 1.35rem;
+  --ra-text-2xl: 1.7rem;
+  --ra-text-3xl: 2.05rem;
+  --ra-text-4xl: 2.5rem;
+
+  --ra-leading-tight: 1.2;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.6;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 700;
+
+  --ra-tracking-tighter: 0;
+  --ra-tracking-tight: 0;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.03em;
+  --ra-tracking-caps: 0.1em;
+
+  /* Tight spacing; the right margin holds side-notes, not whitespace. */
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* No radius, no shadow — chart-junk has no place here. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: linear;
+  --ra-transition: 0ms linear;
+
+  /* A left TOC rail + a centered main text column. */
+  /* Reading width is owned by <Article width> (theme-independent), not here. */
+  --ra-content-width: 1160px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * tufte — signature component anatomy (line-not-box, quiet to a fault)
+ *
+ * A light touch that finally fulfils tufte.md's own promise: sections are
+ * divided by a hairline rule (line-not-box), and the section numeral stays a
+ * small, quiet slate marker. Everything else is deliberately restrained — the
+ * identity here is the *absence* of ornament, against the louder new themes.
+ * ========================================================================== */
+
+/* A faint rule separates each section — the canonical Tufte "line, not box". */
+[data-theme="tufte"] .ra-section {
+  border-top: 1px solid var(--ra-color-border);
+  padding-top: var(--ra-space-5);
+}
+
+/* The section numeral is small and quiet, sitting beside the title. */
+[data-theme="tufte"] .ra-section__index {
+  font-size: var(--ra-text-sm);
+}
+
+/* Aside stays line-not-box: a quiet 2px tone rule, no fill, no glyph. The
+   corrected tone colours (slate / brand / green / red) do the differentiating;
+   ornament would betray the theme. */
+[data-theme="tufte"] .ra-aside {
+  border-left-width: 2px;
+}
+[data-theme="tufte"] .ra-aside__label::before {
+  content: none !important;
+}

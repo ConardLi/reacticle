@@ -1,0 +1,366 @@
+/* Creative pieces rendered inside <Raw>. They are deliberately NOT bound by the
+   protocol's flat aesthetic — Raw is where the article comes alive. Everything
+   reads --ra-* tokens, so each piece harmonises with whatever theme it lands in. */
+
+.rp {
+  --rp-radius: 12px;
+  font-family: var(--ra-font-label);
+}
+
+/* ---- generic card surface ---- */
+.rp-card {
+  border-radius: var(--rp-radius);
+  padding: var(--ra-space-5);
+  background: var(--ra-color-surface);
+  border: 1px solid var(--ra-color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-4);
+}
+.rp-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rp-eyebrow {
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ra-color-accent);
+}
+.rp-card__title {
+  font-size: var(--ra-text-xl);
+  color: var(--ra-color-heading);
+}
+
+/* ---- Token economics: a slider + two animated bars ---- */
+.rp-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-muted);
+}
+.rp-slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--ra-color-accent);
+}
+.rp-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-3);
+}
+.rp-bar {
+  display: grid;
+  grid-template-columns: 6rem 1fr auto;
+  align-items: center;
+  gap: var(--ra-space-3);
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-text);
+}
+.rp-bar__track {
+  height: 14px;
+  border-radius: 999px;
+  background: var(--ra-color-surface-2);
+  overflow: hidden;
+}
+.rp-bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rp-bar__fill--risk {
+  background: var(--ra-color-risk);
+}
+.rp-bar__fill--accent {
+  background: var(--ra-color-accent);
+}
+.rp-bar__num {
+  font-variant-numeric: tabular-nums;
+  color: var(--ra-color-muted);
+  min-width: 4ch;
+  text-align: right;
+}
+.rp-result {
+  font-size: var(--ra-text-base);
+  color: var(--ra-color-heading);
+}
+.rp-result strong {
+  color: var(--ra-color-accent);
+  font-size: var(--ra-text-2xl);
+}
+
+/* ---- Density chart: animated grouped bars ---- */
+.rp-density {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-4);
+}
+.rp-density__plot {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: var(--ra-space-4);
+  height: 180px;
+  padding-top: var(--ra-space-3);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+}
+.rp-density__group {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100%;
+  flex: 1;
+  justify-content: center;
+}
+.rp-density__bar {
+  width: 26px;
+  border-radius: 6px 6px 0 0;
+  height: 0;
+  transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+.rp-density__bar:hover::after {
+  content: attr(data-v);
+  position: absolute;
+  top: -1.4em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-heading);
+}
+.rp-density__labels {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--ra-space-4);
+}
+.rp-density__label {
+  flex: 1;
+  text-align: center;
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-muted);
+}
+.rp-legend {
+  display: flex;
+  gap: var(--ra-space-4);
+  flex-wrap: wrap;
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-muted);
+}
+.rp-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rp-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+/* ---- Generation pipeline: nodes with a travelling pulse ---- */
+.rp-pipe {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ra-space-5) var(--ra-space-3);
+}
+.rp-pipe__line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 2px;
+  background: var(--ra-color-border-strong);
+}
+.rp-pipe__pulse {
+  position: absolute;
+  top: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ra-color-accent);
+  box-shadow: 0 0 0 4px var(--ra-color-accent-soft);
+  animation: rp-travel 3.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.rp-pipe__node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ra-space-2);
+  text-align: center;
+}
+.rp-pipe__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ra-color-bg, #fff);
+  border: 2px solid var(--ra-color-accent);
+}
+.rp-pipe__name {
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-heading);
+  max-width: 6rem;
+}
+@keyframes rp-travel {
+  0% { left: 8%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 92%; opacity: 0; }
+}
+
+/* ---- Theme tokens: live swatches that read the active theme ---- */
+.rp-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ra-space-3);
+}
+.rp-token {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-muted);
+}
+.rp-token__chip {
+  width: 64px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--ra-color-border);
+  transition: transform 0.2s ease;
+}
+.rp-token:hover .rp-token__chip {
+  transform: translateY(-4px);
+}
+.rp-token code {
+  font-family: var(--ra-font-mono);
+  font-size: 10px;
+}
+
+/* ---- Kinetic headline: letters rise + a moving sheen ---- */
+.rp-kinetic {
+  font-family: var(--ra-font-serif, var(--ra-font-body));
+  font-size: clamp(2rem, 7vw, 4rem);
+  line-height: 1.05;
+  color: var(--ra-color-heading);
+  display: flex;
+  flex-wrap: wrap;
+}
+.rp-kinetic span {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: rp-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes rp-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Drop cap: an oversized, gently shimmering initial ---- */
+.rp-dropcap {
+  font-size: var(--ra-text-lg);
+  line-height: var(--ra-leading-normal);
+  color: var(--ra-color-text);
+}
+.rp-dropcap__cap {
+  float: left;
+  font-family: var(--ra-font-serif, var(--ra-font-body));
+  font-size: 4.2em;
+  line-height: 0.8;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--ra-color-accent);
+  background: linear-gradient(
+    120deg,
+    var(--ra-color-accent),
+    var(--ra-color-accent-strong),
+    var(--ra-color-accent)
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rp-shimmer 5s linear infinite;
+}
+@keyframes rp-shimmer {
+  to { background-position: 200% 0; }
+}
+
+/* ---- Feature grid: cards that lift on hover ---- */
+.rp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--ra-space-3);
+}
+.rp-tile {
+  border-radius: var(--rp-radius);
+  padding: var(--ra-space-4);
+  background: var(--ra-color-surface);
+  border: 1px solid var(--ra-color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.rp-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--ra-color-accent);
+}
+.rp-tile__n {
+  font-size: var(--ra-text-3xl);
+  color: var(--ra-color-accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.rp-tile__k {
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-heading);
+}
+.rp-tile__d {
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-muted);
+  line-height: var(--ra-leading-snug);
+}
+
+/* ---- Constellation: drifting component-name chips ---- */
+.rp-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ra-space-2);
+}
+.rp-chip {
+  font-family: var(--ra-font-mono);
+  font-size: var(--ra-text-xs);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ra-color-border);
+  color: var(--ra-color-muted);
+  background: var(--ra-color-surface);
+  animation: rp-float 4s ease-in-out infinite;
+}
+.rp-chip:hover {
+  color: var(--ra-color-accent-contrast);
+  background: var(--ra-color-accent);
+  border-color: var(--ra-color-accent);
+}
+@keyframes rp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rp-pipe__pulse,
+  .rp-kinetic span,
+  .rp-dropcap__cap,
+  .rp-chip {
+    animation: none;
+  }
+  .rp-kinetic span {
+    opacity: 1;
+    transform: none;
+  }
+}

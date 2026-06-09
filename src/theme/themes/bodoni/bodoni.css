@@ -1,0 +1,290 @@
+/*
+ * Theme: bodoni — Giambattista Bodoni / Didone broadsheet & fashion masthead
+ * See bodoni.md for the full design rationale.
+ *
+ * The starkest theme: pure paper, near-black ink, hairline column rules, and a
+ * dramatic high-contrast Didone (Playfair Display) for display type set against
+ * a calm transitional serif body. Identity comes from print conventions — a
+ * masthead double-rule, a real drop cap, small-caps kickers, ruled section
+ * dividers — not from colour. Colour is reserved almost entirely for risk.
+ * For manifestos, deep features, essays, long-form journalism with gravitas.
+ *
+ *  - Black & white; structure carried by weight, scale and hairline rules.
+ *  - Didone display (extreme thick/thin) over a readable old-style serif body.
+ *  - A single editorial crimson, used only where meaning demands it.
+ */
+[data-theme="bodoni"] {
+  /* Surfaces & ink — bright press paper, true black ink. */
+  --ra-color-bg: #fdfdfb;
+  --ra-color-bg-tint: #fdfdfb;
+  --ra-color-surface: #f3f2ee;
+  --ra-color-surface-2: #e8e7e1;
+  --ra-color-text: #16140f;
+  --ra-color-heading: #0a0908;
+  --ra-color-muted: #57534a;
+  --ra-color-faint: #8a857a;
+  --ra-color-border: #ddd9cf;
+  --ra-color-border-strong: #b4afa1;
+
+  /* The accent is INK, not a hue — links and section numerals stay black, the
+     way a printed page does. A deep editorial crimson is reserved for risk. */
+  --ra-color-accent: #0a0908;
+  --ra-color-accent-strong: #000000;
+  --ra-color-accent-contrast: #fdfdfb;
+  --ra-color-accent-soft: #ecebe5;
+
+  --ra-color-risk: #9c1421;
+  --ra-color-risk-soft: #f3e0e0;
+  --ra-color-warn: #9c1421;
+  --ra-color-warn-soft: #f3e0e0;
+  --ra-color-success: #2c5a3f;
+  --ra-color-success-soft: #e2ebe4;
+  --ra-color-info: #1f1d18;
+  --ra-color-info-soft: #ecebe5;
+
+  /* Typography — Didone display over an old-style serif body; a tracked
+     grotesque (small caps via letter-spacing) for kickers and metadata. */
+  --ra-font-body: "Source Serif 4", "Newsreader", Georgia, "Songti SC",
+    "Times New Roman", serif;
+  --ra-font-heading: "Playfair Display", "Bodoni 72", "Didot", "Songti SC",
+    Georgia, serif;
+  --ra-font-label: "Source Serif 4", Georgia, "Songti SC", serif;
+  --ra-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* A tall, dramatic upper register — the masthead must tower over the body. */
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.85rem;
+  --ra-text-base: 1.0625rem;
+  --ra-text-lg: 1.22rem;
+  --ra-text-xl: 1.5rem;
+  --ra-text-2xl: 2.1rem;
+  --ra-text-3xl: 2.9rem;
+  --ra-text-4xl: 3.6rem;
+
+  --ra-leading-tight: 1.04;
+  --ra-leading-snug: 1.34;
+  --ra-leading-normal: 1.62;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 900;
+
+  /* The Didone move: heavy black display weight + size, hairline body. */
+  --ra-weight-display: 900;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 600;
+
+  --ra-tracking-tighter: -0.02em;
+  --ra-tracking-tight: -0.01em;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.04em;
+  --ra-tracking-caps: 0.16em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5.5rem;
+
+  /* Print-flat: no radius, no shadow, an immediate transition. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: cubic-bezier(0.2, 0, 0, 1);
+  --ra-transition: 120ms var(--ra-ease);
+
+  --ra-content-width: 1120px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * bodoni — signature component anatomy (Didone print)
+ * Same DOM + class contract; only the treatment diverges. Identity lives in
+ * print conventions: masthead rules, drop cap, ruled dividers, small caps.
+ * ========================================================================== */
+
+/* Hero — a newspaper masthead: a thick rule over a thin rule, a tracked
+   small-caps kicker, and a towering Didone title. */
+[data-theme="bodoni"] .ra-hero {
+  border-top: 4px solid var(--ra-color-heading);
+  border-bottom: 1px solid var(--ra-color-heading);
+  padding-top: var(--ra-space-3);
+  padding-bottom: var(--ra-space-5);
+  gap: var(--ra-space-3);
+}
+[data-theme="bodoni"] .ra-hero__eyebrow {
+  color: var(--ra-color-heading);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  font-weight: var(--ra-weight-semibold);
+}
+[data-theme="bodoni"] .ra-hero__title {
+  font-size: calc(var(--ra-text-4xl) * 1.1);
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+  text-wrap: balance;
+}
+[data-theme="bodoni"] .ra-hero__subtitle {
+  font-size: var(--ra-text-lg);
+  color: var(--ra-color-muted);
+  max-width: 42rem;
+}
+
+/* Lead — a real broadsheet drop cap on the opening paragraph. */
+[data-theme="bodoni"] .ra-lead {
+  font-size: var(--ra-text-lg);
+}
+[data-theme="bodoni"] .ra-lead::first-letter {
+  float: left;
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-black);
+  font-size: 3.4em;
+  line-height: 0.82;
+  padding: 0.04em 0.12em 0 0;
+  color: var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-lead::first-line {
+  font-variant-caps: small-caps;
+  letter-spacing: var(--ra-tracking-wide);
+}
+
+/* Section — a hairline divider above a Didone numeral set big and black. */
+[data-theme="bodoni"] .ra-section {
+  border-top: 1px solid var(--ra-color-heading);
+  padding-top: var(--ra-space-4);
+}
+[data-theme="bodoni"] .ra-section__head {
+  align-items: baseline;
+  gap: var(--ra-space-4);
+}
+[data-theme="bodoni"] .ra-section__index {
+  font-family: var(--ra-font-heading);
+  font-size: var(--ra-text-3xl);
+  font-weight: var(--ra-weight-black);
+  line-height: 0.8;
+  color: var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-section__title {
+  font-family: var(--ra-font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Subsection — a small-caps run-in ordinal before a serif heading. */
+[data-theme="bodoni"] .ra-subsection__index {
+  font-family: var(--ra-font-label);
+  font-weight: var(--ra-weight-semibold);
+  letter-spacing: var(--ra-tracking-wide);
+  color: var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-subsection__title {
+  font-family: var(--ra-font-heading);
+}
+
+/* Aside — austere print restraint: a hairline frame with a thin tone top rule
+   and a tracked small-caps label. No glyph marker (let the rule carry tone). */
+[data-theme="bodoni"] .ra-aside {
+  border-left: none;
+  border-top: 3px solid var(--ra-aside-accent);
+  border-bottom: 1px solid var(--ra-color-border);
+  border-radius: 0;
+  background: transparent;
+  padding: var(--ra-space-3) 0 var(--ra-space-4);
+}
+[data-theme="bodoni"] .ra-aside__label {
+  font-family: var(--ra-font-label);
+  font-weight: var(--ra-weight-semibold);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+}
+[data-theme="bodoni"] .ra-aside__label::before {
+  content: none;
+}
+
+/* Quote — a centered Didone pull quote between two hairline rules. */
+[data-theme="bodoni"] .ra-quote {
+  border-left: none;
+  border-top: 1px solid var(--ra-color-heading);
+  border-bottom: 1px solid var(--ra-color-heading);
+  padding: var(--ra-space-4) var(--ra-space-6);
+  text-align: center;
+  align-items: center;
+}
+[data-theme="bodoni"] .ra-quote__text {
+  font-family: var(--ra-font-heading);
+  font-size: var(--ra-text-2xl);
+  line-height: 1.2;
+  color: var(--ra-color-heading);
+}
+
+/* Table — a classic ledger: a heavy head rule, small-caps heads, tabular figs. */
+[data-theme="bodoni"] .ra-table__scroll {
+  border-top: 2px solid var(--ra-color-heading);
+  border-bottom: 2px solid var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-table__table thead th {
+  color: var(--ra-color-heading);
+  font-family: var(--ra-font-label);
+  font-weight: var(--ra-weight-semibold);
+  letter-spacing: var(--ra-tracking-caps);
+}
+[data-theme="bodoni"] .ra-table__caption {
+  font-family: var(--ra-font-heading);
+  color: var(--ra-color-heading);
+  font-style: normal;
+}
+
+/* Conclusion — a heavy closing rule, like the end of a printed feature. */
+[data-theme="bodoni"] .ra-conclusion {
+  border-top: 4px solid var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-conclusion__label {
+  font-family: var(--ra-font-label);
+  letter-spacing: var(--ra-tracking-caps);
+  color: var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-conclusion__takeaways li::before {
+  content: "—";
+  color: var(--ra-color-heading);
+}
+
+/* Links — classic ink underline; restrained, not coloured. */
+[data-theme="bodoni"] .ra-article a {
+  color: var(--ra-color-heading);
+  text-decoration: underline;
+  text-decoration-color: var(--ra-color-border-strong);
+  text-underline-offset: 0.18em;
+}
+[data-theme="bodoni"] .ra-article a:hover {
+  text-decoration-color: var(--ra-color-heading);
+}
+
+/* TOC — a contents page: small-caps ruled head, ink active entry. */
+[data-theme="bodoni"] .ra-toc__title {
+  color: var(--ra-color-heading);
+  font-family: var(--ra-font-label);
+  letter-spacing: var(--ra-tracking-caps);
+  border-bottom: 1px solid var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-toc__index {
+  color: var(--ra-color-heading);
+}
+[data-theme="bodoni"] .ra-toc__item--active a {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-semibold);
+}
+[data-theme="bodoni"] .ra-toc__item--active .ra-toc__label {
+  text-decoration-color: var(--ra-color-heading);
+}

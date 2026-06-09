@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="tufte">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ReActicle — AI 时代的 HTML 文章协议。让 AI 用受限语义化 React 组件生成稳定、漂亮、可交互的自包含 HTML 文章与报告。"
+    />
+    <title>ReActicle · AI 时代的 HTML 文章协议</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Josefin+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Restore the reader's theme choice before first paint (chrome + library
+      // share this single attribute, so the whole page is consistent on load).
+      (function () {
+        try {
+          var t = localStorage.getItem("ra-theme");
+          if (
+            t === "tufte" ||
+            t === "press" ||
+            t === "shannon" ||
+            t === "vignelli" ||
+            t === "knuth" ||
+            t === "freddie" ||
+            t === "andy" ||
+            t === "bodoni" ||
+            t === "bayer" ||
+            t === "fuller" ||
+            t === "sottsass"
+          )
+            document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

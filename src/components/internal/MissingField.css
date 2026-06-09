@@ -1,0 +1,8 @@
+.ra-missing {
+  font-style: normal;
+  color: var(--ra-color-risk);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--ra-color-risk);
+  text-underline-offset: 0.15em;
+}

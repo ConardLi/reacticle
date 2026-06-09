@@ -1,0 +1,295 @@
+/*
+ * Theme: sottsass — Ettore Sottsass / Memphis Group (Milano, 1981)
+ * See sottsass.md for the full design rationale.
+ *
+ * The rebellious one: warm cream paper, black ink, and clashing Memphis pastels
+ * (hot pink, turquoise, sunshine yellow, cobalt). Identity comes from 80s
+ * postmodern play — hard offset shadows (no blur), slight rotations, rounded
+ * colour pills, wavy underlines, geometric confetti. Loud and joyful but still
+ * readable. For playful explainers, culture/design writing, launch posts,
+ * anything that wants personality over polish.
+ *
+ *  - Pastels CLASH on purpose; cobalt does the readable structural work.
+ *  - Quirky geometric display (Space Grotesk) over a clean grotesque body.
+ *  - Signature = flat offset shadows + tilt + wavy ink, never soft gradients.
+ */
+[data-theme="sottsass"] {
+  /* Memphis palette, theme-local; mapped onto --ra-* below. */
+  --st-pink: #ff5d9e;
+  --st-teal: #18c2bf;
+  --st-yellow: #ffd23f;
+  --st-blue: #2c54e0;
+  --st-pink-soft: #ffe1ee;
+  --st-teal-soft: #d4f4f3;
+  --st-yellow-soft: #fff1c2;
+
+  /* Surfaces & ink — warm postmodern cream, true black. */
+  --ra-color-bg: #fcf7ef;
+  --ra-color-bg-tint: #fcf7ef;
+  --ra-color-surface: #f4ecdf;
+  --ra-color-surface-2: #ece1cf;
+  --ra-color-text: #1a1714;
+  --ra-color-heading: #0e0c0a;
+  --ra-color-muted: #595149;
+  --ra-color-faint: #8d8579;
+  --ra-color-border: #e0d6c5;
+  --ra-color-border-strong: #0e0c0a;
+
+  /* Cobalt is the readable structural accent (links, ordinals). Pink / teal /
+     yellow are expressive fills carried by --st-* (never as small text). */
+  --ra-color-accent: #2c54e0;
+  --ra-color-accent-strong: #1d3db4;
+  --ra-color-accent-contrast: #ffffff;
+  --ra-color-accent-soft: #e0e6fb;
+
+  --ra-color-risk: #e23b6d;
+  --ra-color-risk-soft: #fbdde6;
+  --ra-color-warn: #e23b6d;
+  --ra-color-warn-soft: #fbdde6;
+  --ra-color-success: #0f9b8e;
+  --ra-color-success-soft: #d4f1ee;
+  --ra-color-info: #2c54e0;
+  --ra-color-info-soft: #e0e6fb;
+
+  /* Typography — quirky geometric display over a clean grotesque body. */
+  --ra-font-body: "Hanken Grotesk", "PingFang SC", system-ui, -apple-system,
+    sans-serif;
+  --ra-font-heading: "Space Grotesk", "Hanken Grotesk", "PingFang SC", system-ui,
+    sans-serif;
+  --ra-font-label: "Space Grotesk", "Hanken Grotesk", "PingFang SC", system-ui,
+    sans-serif;
+  --ra-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.85rem;
+  --ra-text-base: 1.04rem;
+  --ra-text-lg: 1.2rem;
+  --ra-text-xl: 1.45rem;
+  --ra-text-2xl: 1.9rem;
+  --ra-text-3xl: 2.4rem;
+  --ra-text-4xl: 3.0rem;
+
+  --ra-leading-tight: 1.06;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.65;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 700;
+
+  --ra-weight-display: 700;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 600;
+
+  --ra-tracking-tighter: -0.02em;
+  --ra-tracking-tight: -0.01em;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.03em;
+  --ra-tracking-caps: 0.1em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* Mixed shapes + flat offset shadows are the Memphis tell. */
+  --ra-radius-sm: 4px;
+  --ra-radius-md: 10px;
+  --ra-radius-lg: 18px;
+  --ra-radius-xl: 26px;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: 3px 3px 0 var(--ra-color-heading);
+  --ra-shadow-md: 5px 5px 0 var(--ra-color-heading);
+  --ra-shadow-lg: 8px 8px 0 var(--ra-color-heading);
+
+  --ra-ease: cubic-bezier(0.34, 1.4, 0.5, 1);
+  --ra-transition: 160ms var(--ra-ease);
+
+  --ra-content-width: 1120px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * sottsass — signature component anatomy (Memphis postmodern)
+ * ========================================================================== */
+
+/* Hero — a bold black-framed block with a flat teal offset shadow, a tilted
+   pink kicker pill, and a confetti dot row up top. */
+[data-theme="sottsass"] .ra-hero {
+  border: 3px solid var(--ra-color-heading);
+  border-radius: var(--ra-radius-lg);
+  box-shadow: 6px 6px 0 var(--st-teal);
+  padding: var(--ra-space-5) var(--ra-space-5) var(--ra-space-6);
+  background-image: radial-gradient(var(--st-pink) 0 3px, transparent 4px),
+    radial-gradient(var(--st-yellow) 0 3px, transparent 4px),
+    radial-gradient(var(--st-blue) 0 3px, transparent 4px);
+  background-size: 22px 22px, 22px 22px, 22px 22px;
+  background-position: 12px 12px, 24px 12px, 36px 12px;
+  background-repeat: no-repeat;
+}
+[data-theme="sottsass"] .ra-hero__eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  color: var(--ra-color-heading);
+  background: var(--st-pink);
+  border: 2px solid var(--ra-color-heading);
+  border-radius: var(--ra-radius-full);
+  padding: 0.2em 0.8em;
+  transform: rotate(-2deg);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="sottsass"] .ra-hero__title {
+  font-size: calc(var(--ra-text-4xl) * 1.02);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+[data-theme="sottsass"] .ra-hero__subtitle {
+  color: var(--ra-color-muted);
+  max-width: 42rem;
+}
+
+[data-theme="sottsass"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — a tilted, offset-shadowed colour chip holds the numeral. */
+[data-theme="sottsass"] .ra-section__head {
+  align-items: center;
+  gap: var(--ra-space-4);
+}
+[data-theme="sottsass"] .ra-section__index {
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-bold);
+  font-size: var(--ra-text-lg);
+  color: var(--ra-color-heading);
+  background: var(--st-yellow);
+  border: 2px solid var(--ra-color-heading);
+  border-radius: var(--ra-radius-md);
+  box-shadow: 3px 3px 0 var(--ra-color-heading);
+  padding: 0.1em 0.5em;
+  transform: rotate(-3deg);
+  flex: none;
+}
+[data-theme="sottsass"] .ra-section__title {
+  letter-spacing: -0.01em;
+}
+
+[data-theme="sottsass"] .ra-subsection__index {
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-accent);
+}
+
+/* Aside — a bold-bordered tinted block with a flat offset shadow; the four
+   tones clash by design. Keep the geometric marker (Memphis loves shapes). */
+[data-theme="sottsass"] .ra-aside {
+  border: 2px solid var(--ra-color-heading);
+  border-left: 6px solid var(--ra-aside-accent);
+  border-radius: var(--ra-radius-md);
+  box-shadow: 4px 4px 0 var(--ra-aside-accent);
+  background: var(--ra-aside-soft);
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+[data-theme="sottsass"] .ra-aside__label {
+  font-family: var(--ra-font-label);
+  font-weight: var(--ra-weight-bold);
+}
+
+/* Quote — a sunshine block, framed and offset, tilted a hair. */
+[data-theme="sottsass"] .ra-quote {
+  border: 2px solid var(--ra-color-heading);
+  border-left: 6px solid var(--st-teal);
+  border-radius: var(--ra-radius-md);
+  box-shadow: 4px 4px 0 var(--st-teal);
+  background: var(--st-yellow-soft);
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+[data-theme="sottsass"] .ra-quote__text {
+  font-family: var(--ra-font-heading);
+  font-size: var(--ra-text-lg);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Table — a pink header band, padded rounded frame. */
+[data-theme="sottsass"] .ra-table__scroll {
+  border: 2px solid var(--ra-color-heading);
+  border-radius: var(--ra-radius-md);
+  overflow: auto;
+}
+[data-theme="sottsass"] .ra-table__table th,
+[data-theme="sottsass"] .ra-table__table td {
+  padding: var(--ra-space-3) var(--ra-space-4);
+}
+[data-theme="sottsass"] .ra-table__table thead th {
+  background: var(--st-pink);
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+  border-bottom: 2px solid var(--ra-color-heading);
+}
+[data-theme="sottsass"] .ra-table__table tbody td {
+  border-bottom: 1px solid var(--ra-color-border);
+}
+[data-theme="sottsass"] .ra-table__caption {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Conclusion — a framed teal panel with a flat offset shadow. */
+[data-theme="sottsass"] .ra-conclusion {
+  border: 2px solid var(--ra-color-heading);
+  border-top: 2px solid var(--ra-color-heading);
+  border-radius: var(--ra-radius-lg);
+  box-shadow: 5px 5px 0 var(--st-pink);
+  background: var(--st-teal-soft);
+  padding: var(--ra-space-5);
+}
+[data-theme="sottsass"] .ra-conclusion__label {
+  font-family: var(--ra-font-label);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-accent);
+}
+[data-theme="sottsass"] .ra-conclusion__takeaways li::before {
+  content: "◆";
+  color: var(--ra-color-accent);
+}
+
+/* Links — cobalt with a playful wavy pink underline. */
+[data-theme="sottsass"] .ra-article a {
+  color: var(--ra-color-accent);
+  font-weight: var(--ra-weight-semibold);
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--st-pink);
+  text-underline-offset: 0.16em;
+}
+[data-theme="sottsass"] .ra-article a:hover {
+  text-decoration-color: var(--st-teal);
+}
+
+/* TOC — bold active entry with a pink wavy mark. */
+[data-theme="sottsass"] .ra-toc__title {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="sottsass"] .ra-toc__index {
+  color: var(--ra-color-accent);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="sottsass"] .ra-toc__item--active a {
+  color: var(--ra-color-accent-strong);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="sottsass"] .ra-toc__item--active .ra-toc__label {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--st-pink);
+}

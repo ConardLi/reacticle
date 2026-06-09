@@ -1,0 +1,170 @@
+/* No cards here. A "card" in Tufte is just labelled, ruled text. */
+.ra-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+
+.ra-card__label {
+  display: block;
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ra-color-muted);
+}
+
+/* ---- Summary ---- */
+.ra-summary {
+  gap: var(--ra-space-3);
+  padding-top: var(--ra-space-3);
+  border-top: 1px solid var(--ra-color-border);
+}
+
+.ra-summary__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+  counter-reset: ra-sum;
+}
+
+.ra-summary__list li {
+  position: relative;
+  padding-left: var(--ra-space-6);
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-text);
+  counter-increment: ra-sum;
+}
+
+.ra-summary__list li::before {
+  content: counter(ra-sum);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-accent);
+  font-feature-settings: "tnum";
+}
+
+/* ---- Aside: a callout family ----
+   Two design intents live here. By default an aside is "line, not box": a
+   tone-coloured left rule + labelled text, faithful to the data-ink themes
+   (tufte / knuth). The expressive themes (press / vignelli / shannon) promote
+   it to a real tinted block via --ra-aside-soft. Every tone owns a *distinct*
+   semantic colour and a geometric type marker, so the four kinds are tellable
+   apart at a glance — the thing飞书's callouts get right. */
+.ra-aside {
+  --ra-aside-accent: var(--ra-color-info);
+  --ra-aside-soft: var(--ra-color-info-soft);
+  gap: var(--ra-space-2);
+  padding: var(--ra-space-4) 0 var(--ra-space-4) var(--ra-space-4);
+  border-left: 3px solid var(--ra-aside-accent);
+  border-top: 1px solid var(--ra-color-border);
+  border-bottom: 1px solid var(--ra-color-border);
+}
+
+.ra-aside--note {
+  --ra-aside-accent: var(--ra-color-info);
+  --ra-aside-soft: var(--ra-color-info-soft);
+}
+.ra-aside--principle {
+  --ra-aside-accent: var(--ra-color-accent);
+  --ra-aside-soft: var(--ra-color-accent-soft);
+}
+.ra-aside--capability {
+  --ra-aside-accent: var(--ra-color-success);
+  --ra-aside-soft: var(--ra-color-success-soft);
+}
+.ra-aside--warning {
+  --ra-aside-accent: var(--ra-color-warn);
+  --ra-aside-soft: var(--ra-color-warn-soft);
+}
+
+.ra-aside__label {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--ra-aside-accent);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* A per-tone geometric marker. It carries meaning (which kind of aside), so it
+   is not decoration; the austere themes still opt out of it (see below). */
+.ra-aside__label::before {
+  font-size: 0.82em;
+  line-height: 1;
+  color: var(--ra-aside-accent);
+}
+.ra-aside--note .ra-aside__label::before {
+  content: "▸";
+}
+.ra-aside--principle .ra-aside__label::before {
+  content: "◆";
+}
+.ra-aside--capability .ra-aside__label::before {
+  content: "✓";
+}
+.ra-aside--warning .ra-aside__label::before {
+  content: "▲";
+}
+
+.ra-aside__body {
+  /* Read at body size — the accent label, left rule (and, in the expressive
+     themes, the tint) already set the aside apart; it needn't be enlarged. */
+  font-size: var(--ra-text-base);
+  line-height: var(--ra-leading-normal);
+  color: var(--ra-color-heading);
+}
+
+.ra-aside__body code {
+  font-family: var(--ra-font-mono);
+  font-size: 0.86em;
+  padding: 0.05em 0.35em;
+  border: 1px solid var(--ra-color-border);
+  background: var(--ra-color-surface);
+}
+
+/* press — a soft, tone-tinted block: the closest reading to a飞书 callout,
+   appropriate to this warm editorial theme. */
+[data-theme="press"] .ra-aside {
+  padding: var(--ra-space-4) var(--ra-space-5);
+  border: 1px solid color-mix(in srgb, var(--ra-aside-accent) 22%, transparent);
+  border-left: 3px solid var(--ra-aside-accent);
+  border-radius: var(--ra-radius-sm);
+  background: var(--ra-aside-soft);
+}
+
+/* ---- Quote: a pulled quotation set off by a single rule, not a box ---- */
+.ra-quote {
+  margin: 0;
+  padding-left: var(--ra-space-5);
+  border-left: 2px solid var(--ra-color-border-strong);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+
+.ra-quote__text {
+  margin: 0;
+  /* A pull quote sits just a step above body — set off mainly by the rule and
+     ink, not by shouting. (Was text-xl, which read far too large.) */
+  font-size: var(--ra-text-lg);
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-heading);
+}
+
+.ra-quote__by {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-muted);
+}
+
+.ra-quote__by::before {
+  content: "— ";
+  color: var(--ra-color-faint);
+}

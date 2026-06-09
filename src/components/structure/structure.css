@@ -1,0 +1,356 @@
+/* ---- Layout: optional left TOC rail + a centered main column ---- */
+.ra-article-layout {
+  max-width: calc(var(--ra-measure) + 2 * var(--ra-space-6));
+  margin: 0 auto;
+  padding: var(--ra-space-9) var(--ra-space-6);
+}
+
+/*
+ * Width modes — owned by <Article width>, independent of the theme. The theme
+ * controls aesthetics (type / color / rhythm); the article controls how wide it
+ * reads. These set the reading measure on the layout element, overriding any
+ * inherited theme value.
+ */
+.ra-article-layout[data-width="narrow"] {
+  --ra-measure: 34rem;
+}
+.ra-article-layout[data-width="regular"] {
+  --ra-measure: 46rem;
+}
+.ra-article-layout[data-width="wide"] {
+  --ra-measure: 58rem;
+}
+.ra-article-layout[data-width="full"] {
+  --ra-measure: 78rem;
+}
+
+.ra-article-layout--with-toc {
+  max-width: calc(
+    var(--ra-toc-width) + var(--ra-space-7) + var(--ra-measure) + 2 *
+      var(--ra-space-6)
+  );
+  display: grid;
+  /* The main column is exactly the reading measure — no empty reserved band. */
+  grid-template-columns: var(--ra-toc-width) minmax(0, var(--ra-measure));
+  justify-content: center;
+  gap: var(--ra-space-7);
+  align-items: start;
+}
+
+/*
+ * Keep the reading column pinned to the second track and the TOC to the first,
+ * so the article can never collapse into the narrow TOC band even if the TOC
+ * element is momentarily absent (e.g. during the first paint before headings
+ * are derived).
+ */
+.ra-article-layout--with-toc > .ra-toc {
+  grid-column: 1;
+}
+.ra-article-layout--with-toc > .ra-article {
+  grid-column: 2;
+}
+
+/* ---- Article: the main text column ---- */
+.ra-article {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-7);
+  min-width: 0;
+}
+
+.ra-article > * {
+  max-width: 100%;
+}
+
+@media (max-width: 999px) {
+  .ra-article-layout--with-toc {
+    display: block;
+  }
+}
+
+/* ---- TOC ---- */
+.ra-toc {
+  position: sticky;
+  top: var(--ra-space-5);
+  align-self: start;
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  line-height: var(--ra-leading-snug);
+}
+
+.ra-toc__title {
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ra-color-faint);
+  padding-bottom: var(--ra-space-2);
+  margin-bottom: var(--ra-space-3);
+  border-bottom: 1px solid var(--ra-color-border);
+}
+
+.ra-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+
+.ra-toc__item a {
+  display: flex;
+  gap: var(--ra-space-2);
+  color: var(--ra-color-muted);
+  text-decoration: none;
+}
+
+/* Nested entries sit progressively indented under their parent heading. */
+.ra-toc__item--l2 a {
+  padding-left: var(--ra-space-4);
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-faint);
+}
+
+.ra-toc__item--l3 a {
+  padding-left: var(--ra-space-6);
+  font-size: var(--ra-text-xs);
+  color: var(--ra-color-faint);
+}
+
+.ra-toc__item a:hover {
+  color: var(--ra-color-text);
+}
+
+.ra-toc__index {
+  flex: none;
+  color: var(--ra-color-accent);
+  font-feature-settings: "tnum";
+}
+
+.ra-toc__item--active a {
+  color: var(--ra-color-heading);
+}
+
+.ra-toc__item--active .ra-toc__label {
+  text-decoration: underline;
+  text-decoration-color: var(--ra-color-risk);
+  text-underline-offset: 0.15em;
+}
+
+@media (max-width: 999px) {
+  .ra-toc {
+    position: static;
+    margin-bottom: var(--ra-space-6);
+  }
+}
+
+/* ---- Hero ---- */
+.ra-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+  padding-bottom: var(--ra-space-4);
+  border-bottom: 1px solid var(--ra-color-border);
+}
+
+.ra-hero__eyebrow {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ra-color-muted);
+  margin-bottom: var(--ra-space-1);
+}
+
+.ra-hero__title {
+  font-size: var(--ra-text-4xl);
+  font-weight: var(--ra-weight-display);
+  line-height: var(--ra-leading-tight);
+  color: var(--ra-color-heading);
+}
+
+.ra-hero__subtitle {
+  font-size: var(--ra-text-xl);
+  font-style: normal;
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-muted);
+}
+
+.ra-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ra-space-1) var(--ra-space-5);
+  margin-top: var(--ra-space-3);
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-muted);
+}
+
+.ra-hero__meta-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+.ra-hero__meta-item strong {
+  font-weight: var(--ra-weight-medium);
+  color: var(--ra-color-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ra-tracking-wide);
+  font-size: var(--ra-text-xs);
+}
+
+/* ---- Lead ---- */
+.ra-lead {
+  font-size: var(--ra-text-lg);
+  line-height: var(--ra-leading-normal);
+  color: var(--ra-color-text);
+}
+
+.ra-lead::first-line {
+  font-variant-caps: small-caps;
+  letter-spacing: var(--ra-tracking-wide);
+}
+
+/* ---- Section ---- */
+.ra-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-4);
+  scroll-margin-top: var(--ra-space-6);
+}
+
+.ra-section__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ra-space-3);
+}
+
+.ra-section__index {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-base);
+  font-weight: var(--ra-weight-medium);
+  color: var(--ra-color-accent);
+  font-feature-settings: "tnum";
+}
+
+.ra-section__title {
+  font-size: var(--ra-text-2xl);
+  font-weight: var(--ra-weight-h2);
+  color: var(--ra-color-heading);
+}
+
+.ra-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-4);
+  line-height: var(--ra-leading-normal);
+}
+
+.ra-section__body > p {
+  margin: 0;
+  color: var(--ra-color-text);
+}
+
+/* ---- Subsection (second-level heading) ---- */
+.ra-subsection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-3);
+  /* Extra breathing room above a second-level heading so it reads as a real
+     boundary, not just another paragraph. Compounds with the parent gap. */
+  margin-top: var(--ra-space-3);
+  scroll-margin-top: var(--ra-space-6);
+}
+
+.ra-subsection__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ra-space-2);
+}
+
+.ra-subsection__index {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  font-weight: var(--ra-weight-medium);
+  color: var(--ra-color-accent);
+  font-feature-settings: "tnum";
+}
+
+.ra-subsection__title {
+  font-size: var(--ra-text-lg);
+  font-weight: var(--ra-weight-h3);
+  font-style: normal;
+  color: var(--ra-color-heading);
+}
+
+/* Third level: a touch smaller, upright, label-like. */
+.ra-subsection--l3 {
+  gap: var(--ra-space-2);
+}
+
+.ra-subsection--l3 .ra-subsection__title {
+  font-size: var(--ra-text-base);
+  font-style: normal;
+  font-weight: var(--ra-weight-medium);
+}
+
+.ra-subsection__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-4);
+  line-height: var(--ra-leading-normal);
+}
+
+.ra-subsection__body > p {
+  margin: 0;
+  color: var(--ra-color-text);
+}
+
+/* ---- Conclusion: a deliberate closing, ruled top like a final movement ---- */
+.ra-conclusion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-3);
+  padding-top: var(--ra-space-4);
+  border-top: 2px solid var(--ra-color-border-strong);
+}
+
+.ra-conclusion__label {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ra-color-accent);
+}
+
+.ra-conclusion__body {
+  font-size: var(--ra-text-lg);
+  line-height: var(--ra-leading-normal);
+  color: var(--ra-color-text);
+}
+
+.ra-conclusion__takeaways {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+}
+
+.ra-conclusion__takeaways li {
+  position: relative;
+  padding-left: var(--ra-space-4);
+  color: var(--ra-color-heading);
+}
+
+.ra-conclusion__takeaways li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--ra-color-accent);
+}

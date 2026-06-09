@@ -1,0 +1,112 @@
+/* Base layer applied at the ReActicle theme root. Kept deliberately spare:
+   no background washes, no decoration — only what the text needs. */
+.ra-root {
+  color: var(--ra-color-text);
+  background-color: var(--ra-color-bg);
+  font-family: var(--ra-font-body);
+  font-size: var(--ra-text-base);
+  line-height: var(--ra-leading-normal);
+  font-weight: var(--ra-weight-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "onum";
+}
+
+.ra-root *,
+.ra-root *::before,
+.ra-root *::after {
+  box-sizing: border-box;
+}
+
+.ra-root :is(h1, h2, h3, h4) {
+  font-family: var(--ra-font-heading);
+  line-height: var(--ra-leading-tight);
+  letter-spacing: var(--ra-tracking-tight);
+  color: var(--ra-color-heading);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Heading weight is per-level and theme-owned (see --ra-weight-* tokens). */
+.ra-root h1 {
+  font-weight: var(--ra-weight-display);
+}
+.ra-root h2 {
+  font-weight: var(--ra-weight-h2);
+}
+.ra-root :is(h3, h4) {
+  font-weight: var(--ra-weight-h3);
+}
+
+.ra-root p {
+  margin: 0;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+/*
+ * Protocol rule: italics are disabled across EVERY theme.
+ * Emphasis is carried by weight / color / spacing — never by slant.
+ * `!important` keeps this authoritative over any theme or component rule,
+ * including ones added later.
+ */
+.ra-root,
+.ra-root :where(*) {
+  font-style: normal !important;
+}
+
+.ra-root strong {
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-heading);
+}
+
+/* Links: ink with a thin underline (Tufte keeps links quiet, not colored). */
+.ra-root a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--ra-color-border-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.ra-root a:hover {
+  text-decoration-color: var(--ra-color-text);
+}
+
+.ra-root code {
+  font-family: var(--ra-font-mono);
+  font-size: 0.85em;
+  color: var(--ra-color-heading);
+}
+
+.ra-root ::selection {
+  background: var(--ra-color-surface-2);
+}
+
+/* Reusable humanist-sans label / kicker. */
+.ra-eyebrow {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-xs);
+  font-weight: var(--ra-weight-medium);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  color: var(--ra-color-muted);
+}
+
+/*
+ * Side-notes (marginalia) — the signature Tufte move.
+ * On wide viewports they float into the right gutter; on narrow ones they
+ * collapse to a small indented block under the text.
+ */
+/* A small caption-style note set just under its text. */
+.ra-sidenote {
+  display: block;
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  line-height: var(--ra-leading-snug);
+  color: var(--ra-color-muted);
+  margin-top: var(--ra-space-2);
+  padding-left: var(--ra-space-3);
+  border-left: 1px solid var(--ra-color-border);
+}

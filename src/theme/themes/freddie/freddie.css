@@ -1,0 +1,280 @@
+/*
+ * Theme: freddie — Mailchimp / Cavendish Yellow（warm, witty, human）
+ * See freddie.md for the full design rationale.
+ *
+ * The warm, irreverent, editorial register. Same DOM and token contract as
+ * every other theme, but a different temperament: white paper, near-black
+ * Peppercorn ink, and Cavendish Yellow deployed as a HIGHLIGHTER — never as
+ * text (yellow ink is illegible; yellow behind black ink is the whole brand).
+ * A quirky soft serif (Fraunces, à la Cooper Oldstyle / Means) does the
+ * headlines; a clean grotesque (Hanken, à la Graphik) carries the body.
+ *
+ *  - White paper, Peppercorn ink; moderate friendly rounding.
+ *  - Yellow is a fill / marker: sticker numerals, highlighter links, callouts.
+ *  - Serif display + grotesque body — a deliberate two-voice pairing.
+ */
+[data-theme="freddie"] {
+  /* The signature, kept local: components never need it, only this theme's
+     scoped anatomy paints with it (yellow can't be a text/link color). */
+  --mc-yellow: #ffe01b;
+  --mc-yellow-strong: #f2ca00;
+
+  /* Surfaces & ink — clean white paper, warm Peppercorn ink. */
+  --ra-color-bg: #ffffff;
+  --ra-color-bg-tint: #fffdf3;
+  --ra-color-surface: #f7f4ec;
+  --ra-color-surface-2: #efe9da;
+  --ra-color-text: #2c241c;
+  --ra-color-heading: #1d160f;
+  --ra-color-muted: #6f6356;
+  --ra-color-faint: #9c9081;
+  --ra-color-border: #e7dfce;
+  --ra-color-border-strong: #d6ccb4;
+
+  /* Accent is a legible INK (so every default text-accent usage stays
+     readable); the yellow lives in --mc-yellow and the soft tints. */
+  --ra-color-accent: #241c15;
+  --ra-color-accent-strong: #000000;
+  --ra-color-accent-contrast: #ffe01b;
+  --ra-color-accent-soft: #fff1ad;
+
+  --ra-color-risk: #c63d1a;
+  --ra-color-risk-soft: #f8ddd2;
+  --ra-color-warn: #c63d1a;
+  --ra-color-warn-soft: #f8ddd2;
+  --ra-color-success: #2f7d4f;
+  --ra-color-success-soft: #dcefe2;
+  /* "note" callouts default to the yellow highlight — the Mailchimp callout. */
+  --ra-color-info: #241c15;
+  --ra-color-info-soft: #fff1ad;
+
+  /* Typography — quirky soft serif display + clean grotesque body. */
+  --ra-font-body: "Hanken Grotesk", "Inter", "Helvetica Neue", "Arial",
+    "PingFang SC", system-ui, sans-serif;
+  --ra-font-heading: "Fraunces", "Cooper Lt BT", Georgia, "Songti SC", serif;
+  --ra-font-label: var(--ra-font-body);
+  --ra-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* A friendly, slightly generous scale. */
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.85rem;
+  --ra-text-base: 1.06rem;
+  --ra-text-lg: 1.22rem;
+  --ra-text-xl: 1.5rem;
+  --ra-text-2xl: 1.92rem;
+  --ra-text-3xl: 2.4rem;
+  --ra-text-4xl: 3rem;
+
+  --ra-leading-tight: 1.08;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.65;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 800;
+
+  /* Headlines carry weight — the quirky serif looks best properly bold. */
+  --ra-weight-display: 700;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 600;
+
+  --ra-tracking-tighter: -0.02em;
+  --ra-tracking-tight: -0.01em;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.02em;
+  --ra-tracking-caps: 0.08em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* Moderate, friendly rounding — a brand signature, not slop. */
+  --ra-radius-sm: 6px;
+  --ra-radius-md: 10px;
+  --ra-radius-lg: 16px;
+  --ra-radius-xl: 22px;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  /* A whisper of bounce — witty, but never silly. */
+  --ra-ease: cubic-bezier(0.34, 1.4, 0.5, 1);
+  --ra-transition: 180ms var(--ra-ease);
+
+  --ra-content-width: 1120px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * freddie — signature component anatomy (Cavendish Yellow, highlighted)
+ *
+ * Same DOM and class contract as every other theme; only the *treatment*
+ * diverges. The identity lives here: black ink swiped with yellow — sticker
+ * numerals, highlighter links, yellow callouts — and a soft-quirky Fraunces
+ * headline. Components still only read --ra-* tokens; authors still pick a theme.
+ * ========================================================================== */
+
+/* Soft, quirky headlines: Fraunces' SOFT + WONK axes give the Cooper warmth. */
+[data-theme="freddie"] .ra-hero__title,
+[data-theme="freddie"] .ra-section__title,
+[data-theme="freddie"] .ra-subsection__title,
+[data-theme="freddie"] .ra-conclusion__label {
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+}
+
+/* Hero — a big soft-serif title with a yellow-highlighted eyebrow. */
+[data-theme="freddie"] .ra-hero {
+  gap: var(--ra-space-3);
+  padding-bottom: var(--ra-space-4);
+}
+[data-theme="freddie"] .ra-hero__eyebrow {
+  align-self: flex-start;
+  width: fit-content;
+  background: var(--mc-yellow);
+  color: var(--ra-color-heading);
+  padding: 0.22em 0.55em;
+  border-radius: var(--ra-radius-sm);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="freddie"] .ra-hero__title {
+  font-size: calc(var(--ra-text-4xl) * 1.05);
+  line-height: 1.02;
+}
+[data-theme="freddie"] .ra-hero__subtitle {
+  color: var(--ra-color-muted);
+  max-width: 44rem;
+}
+
+/* Lead — body is grotesque, so drop the serif small-caps first line. */
+[data-theme="freddie"] .ra-lead {
+  font-weight: var(--ra-weight-medium);
+}
+[data-theme="freddie"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — THE signature: the numeral is a yellow sticker, slightly askew. */
+[data-theme="freddie"] .ra-section__head {
+  align-items: center;
+  gap: var(--ra-space-3);
+}
+[data-theme="freddie"] .ra-section__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1em;
+  padding: 0.12em 0.4em;
+  background: var(--mc-yellow);
+  color: var(--ra-color-heading);
+  border-radius: var(--ra-radius-md);
+  font-family: var(--ra-font-heading);
+  font-weight: var(--ra-weight-bold);
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  transform: rotate(-3deg);
+}
+[data-theme="freddie"] .ra-subsection__index {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+
+/* Aside — a yellow (or tone) callout: black-edged tinted block, friendly round. */
+[data-theme="freddie"] .ra-aside {
+  border: 1px solid color-mix(in srgb, var(--ra-aside-accent) 16%, transparent);
+  border-left: 4px solid var(--ra-aside-accent);
+  border-radius: var(--ra-radius-md);
+  background: var(--ra-aside-soft);
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+
+/* Quote — a fat yellow marker rule. */
+[data-theme="freddie"] .ra-quote {
+  border-left: 6px solid var(--mc-yellow);
+  padding-left: var(--ra-space-4);
+}
+
+/* Bold phrases get a yellow marker swipe — the most Freddie move there is, and
+   what carries the brand into the running text. */
+[data-theme="freddie"] .ra-section__body strong,
+[data-theme="freddie"] .ra-subsection__body strong,
+[data-theme="freddie"] .ra-lead strong {
+  background: linear-gradient(transparent 58%, var(--mc-yellow) 58%);
+  font-weight: var(--ra-weight-bold);
+}
+
+/* Table — a friendly, padded, rounded card. The base table is a bare line-grid
+   (no side padding); freddie makes it a real boxed table with a yellow header. */
+[data-theme="freddie"] .ra-table__scroll {
+  border: 1px solid var(--ra-color-border-strong);
+  border-radius: var(--ra-radius-md);
+  overflow: auto;
+}
+[data-theme="freddie"] .ra-table__table th,
+[data-theme="freddie"] .ra-table__table td {
+  padding: var(--ra-space-3) var(--ra-space-4);
+}
+[data-theme="freddie"] .ra-table__table thead th {
+  background: var(--ra-color-accent-soft);
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+  border-bottom: 1px solid var(--ra-color-heading);
+}
+[data-theme="freddie"] .ra-table__table tbody td {
+  border-bottom: 1px solid var(--ra-color-border);
+}
+[data-theme="freddie"] .ra-table__caption {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Conclusion — close on a thick yellow bar. */
+[data-theme="freddie"] .ra-conclusion {
+  border-top: 4px solid var(--mc-yellow);
+}
+
+/* Links — the marker move: a yellow highlight that fills on hover. Scoped to
+   article prose only, so it never bleeds onto the site chrome (nav / TOC). */
+[data-theme="freddie"] .ra-article a {
+  color: var(--ra-color-heading);
+  text-decoration: none;
+  background-image: linear-gradient(var(--mc-yellow), var(--mc-yellow));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 0.26em;
+  border-radius: 2px;
+  transition: background-size var(--ra-transition);
+}
+[data-theme="freddie"] .ra-article a:hover {
+  background-size: 100% 100%;
+}
+
+/* TOC — mark the active entry with a yellow chip. */
+[data-theme="freddie"] .ra-toc__title {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="freddie"] .ra-toc__index {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="freddie"] .ra-toc__item--active a {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="freddie"] .ra-toc__item--active .ra-toc__label {
+  background: var(--mc-yellow);
+  color: var(--ra-color-heading);
+  padding: 0.05em 0.35em;
+  border-radius: var(--ra-radius-sm);
+  text-decoration: none;
+}

@@ -1,0 +1,106 @@
+/*
+ * ReActicle design tokens — the variable contract.
+ *
+ * These are the ONLY values components may reference (via var(--ra-*)).
+ * Components never hardcode color / spacing / fonts. The active theme owns the
+ * look by overriding these. Defaults below are neutral fallbacks; the shipped
+ * theme (tufte) overrides the meaningful ones.
+ */
+
+:root {
+  /* Surfaces & ink */
+  --ra-color-bg: #ffffff;
+  --ra-color-bg-tint: #ffffff;
+  --ra-color-surface: #f5f5f3;
+  --ra-color-surface-2: #ececea;
+  --ra-color-text: #1b1b1a;
+  --ra-color-heading: #111110;
+  --ra-color-muted: #5c5550;
+  --ra-color-faint: #8a847a;
+  --ra-color-border: #d8d2c2;
+  --ra-color-border-strong: #c3bca8;
+
+  /* Accent / data colors */
+  --ra-color-accent: #3e4a5c;
+  --ra-color-accent-strong: #2b3340;
+  --ra-color-accent-contrast: #ffffff;
+  --ra-color-accent-soft: #e7e9ed;
+
+  /* Semantic */
+  --ra-color-risk: #a6300e;
+  --ra-color-risk-soft: #f0e3dd;
+  --ra-color-warn: #a6300e;
+  --ra-color-warn-soft: #f0e3dd;
+  --ra-color-success: #4a5a3f;
+  --ra-color-success-soft: #e8eadf;
+  --ra-color-info: #3e4a5c;
+  --ra-color-info-soft: #e7e9ed;
+
+  /* Typography */
+  --ra-font-body: Georgia, "Songti SC", "Times New Roman", serif;
+  --ra-font-heading: var(--ra-font-body);
+  --ra-font-label: system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --ra-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --ra-text-xs: 0.72rem;
+  --ra-text-sm: 0.82rem;
+  --ra-text-base: 1rem;
+  --ra-text-lg: 1.15rem;
+  --ra-text-xl: 1.35rem;
+  --ra-text-2xl: 1.7rem;
+  --ra-text-3xl: 2.05rem;
+  --ra-text-4xl: 2.5rem;
+
+  --ra-leading-tight: 1.2;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.6;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 700;
+
+  /* Heading weights — per level so a theme can own real display type.
+     Defaults reproduce the historical look (normal h1/h2, semibold h3/h4);
+     a theme overrides these to gain bold display identity. */
+  --ra-weight-display: var(--ra-weight-normal);
+  --ra-weight-h2: var(--ra-weight-normal);
+  --ra-weight-h3: var(--ra-weight-semibold);
+
+  --ra-tracking-tighter: 0;
+  --ra-tracking-tight: 0;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.03em;
+  --ra-tracking-caps: 0.1em;
+
+  /* Spacing */
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* Shape & depth */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  /* Motion */
+  --ra-ease: linear;
+  --ra-transition: 0ms linear;
+
+  /* Layout */
+  --ra-content-width: 1160px;
+  --ra-measure: 46rem;
+  --ra-toc-width: 13rem;
+}

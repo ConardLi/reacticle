@@ -1,0 +1,254 @@
+/*
+ * Theme: fuller — Buckminster Fuller / engineering blueprint & drafting table
+ * See fuller.md for the full design rationale.
+ *
+ * The technical dark theme: a deep blueprint navy ground, light cyan-white ink,
+ * a single drafting cyan, and a faint grid. Identity comes from the drawing
+ * board — a title-block hero on graph paper, monospace dimensions and labels,
+ * dimension-tick dividers, hairline cyan rules. The cool, precise counterpart
+ * to shannon's warm amber terminal. For specs, system design, architecture,
+ * RFCs, hardware / protocol writing.
+ *
+ *  - Cyan-on-navy blueprint; structure carried by line, grid and mono labels.
+ *  - IBM Plex Sans body, IBM Plex Mono for every annotation and numeral.
+ *  - A subtle graph-paper grid is the signature, never gradients or glow.
+ */
+[data-theme="fuller"] {
+  /* Drafting cyan + grid, kept theme-local; mapped onto --ra-* below.
+     A muted, pale drafting blue (NOT neon cyan) — calmer on the eyes and truer
+     to a real cyanotype blueprint, which is soft lines on Prussian blue. */
+  --fl-cyan: #79c2d0;
+  --fl-grid: color-mix(in srgb, #79c2d0 7%, transparent);
+
+  /* Surfaces & ink — a desaturated Prussian blueprint ground (less saturated
+     and a touch lighter than before, so it stops vibrating against the lines)
+     and a soft, slightly-warm light ink (NOT pure white). */
+  --ra-color-bg: #213749;
+  --ra-color-bg-tint: #213749;
+  --ra-color-surface: #29404f;
+  --ra-color-surface-2: #314a5b;
+  --ra-color-text: #d2dbe2;
+  --ra-color-heading: #eef3f7;
+  --ra-color-muted: #9aaab8;
+  --ra-color-faint: #6c8090;
+  --ra-color-border: #3a4f5f;
+  --ra-color-border-strong: #4e6675;
+
+  /* Drafting blue carries structure (links, numerals, rules). Risk runs warm
+     amber so it reads against the blue; success is a soft blueprint mint. */
+  --ra-color-accent: #79c2d0;
+  --ra-color-accent-strong: #9bd6e1;
+  --ra-color-accent-contrast: #16242e;
+  --ra-color-accent-soft: #2a4250;
+
+  --ra-color-risk: #eda06a;
+  --ra-color-risk-soft: #3a2e22;
+  --ra-color-warn: #eda06a;
+  --ra-color-warn-soft: #3a2e22;
+  --ra-color-success: #7fcaa6;
+  --ra-color-success-soft: #1c3a2e;
+  --ra-color-info: #79c2d0;
+  --ra-color-info-soft: #2a4250;
+
+  /* Typography — engineering sans + mono; mono does the labelling work. */
+  --ra-font-body: "IBM Plex Sans", "PingFang SC", system-ui, -apple-system,
+    sans-serif;
+  --ra-font-heading: "IBM Plex Sans", "PingFang SC", system-ui, sans-serif;
+  --ra-font-label: "IBM Plex Mono", "JetBrains Mono", ui-monospace, Menlo,
+    monospace;
+  --ra-font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, "SF Mono",
+    Menlo, Consolas, monospace;
+
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.84rem;
+  --ra-text-base: 1.02rem;
+  --ra-text-lg: 1.18rem;
+  --ra-text-xl: 1.4rem;
+  --ra-text-2xl: 1.8rem;
+  --ra-text-3xl: 2.2rem;
+  --ra-text-4xl: 2.7rem;
+
+  --ra-leading-tight: 1.12;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.62;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 700;
+
+  --ra-weight-display: 600;
+  --ra-weight-h2: 600;
+  --ra-weight-h3: 600;
+
+  --ra-tracking-tighter: -0.01em;
+  --ra-tracking-tight: 0;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.04em;
+  --ra-tracking-caps: 0.14em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* Drafting-flat: no radius, no shadow. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: cubic-bezier(0.2, 0, 0, 1);
+  --ra-transition: 120ms var(--ra-ease);
+
+  --ra-content-width: 1120px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * fuller — signature component anatomy (blueprint / drafting)
+ * ========================================================================== */
+
+/* Hero — a drafting title block: a bordered panel on graph paper, mono kicker. */
+[data-theme="fuller"] .ra-hero {
+  border: 1px solid var(--ra-color-border-strong);
+  border-top: 3px solid var(--ra-color-accent);
+  padding: var(--ra-space-5) var(--ra-space-5) var(--ra-space-6);
+  background-image: linear-gradient(var(--fl-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--fl-grid) 1px, transparent 1px);
+  background-size: 1.75rem 1.75rem;
+  background-position: -1px -1px;
+}
+[data-theme="fuller"] .ra-hero__eyebrow {
+  color: var(--ra-color-accent);
+  letter-spacing: var(--ra-tracking-caps);
+}
+[data-theme="fuller"] .ra-hero__title {
+  letter-spacing: -0.01em;
+}
+[data-theme="fuller"] .ra-hero__subtitle {
+  color: var(--ra-color-muted);
+  max-width: 42rem;
+}
+[data-theme="fuller"] .ra-hero__meta {
+  font-family: var(--ra-font-mono);
+}
+
+[data-theme="fuller"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — a dashed cyan dimension line above a mono numeral. */
+[data-theme="fuller"] .ra-section {
+  border-top: 1px dashed var(--ra-color-border-strong);
+  padding-top: var(--ra-space-4);
+}
+[data-theme="fuller"] .ra-section__head {
+  align-items: baseline;
+  gap: var(--ra-space-3);
+}
+[data-theme="fuller"] .ra-section__index {
+  font-family: var(--ra-font-mono);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-accent);
+}
+[data-theme="fuller"] .ra-section__index::before {
+  content: "◇ ";
+  color: var(--ra-color-accent);
+}
+
+[data-theme="fuller"] .ra-subsection__index {
+  font-family: var(--ra-font-mono);
+  color: var(--ra-color-accent);
+}
+
+/* Aside — a technical note box: a bordered cyan-edged panel, mono caps label. */
+[data-theme="fuller"] .ra-aside {
+  border: 1px solid var(--ra-aside-accent);
+  border-left: 3px solid var(--ra-aside-accent);
+  border-radius: 0;
+  background: var(--ra-aside-soft);
+  padding: var(--ra-space-4) var(--ra-space-5);
+}
+[data-theme="fuller"] .ra-aside__label {
+  font-family: var(--ra-font-label);
+  letter-spacing: var(--ra-tracking-caps);
+  text-transform: uppercase;
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Quote — a cyan rule and a clean engineering voice. */
+[data-theme="fuller"] .ra-quote {
+  border-left: 3px solid var(--ra-color-accent);
+  padding-left: var(--ra-space-4);
+}
+
+/* Table — a spec sheet: cyan head rule, mono heads, dim hairline rows. */
+[data-theme="fuller"] .ra-table__scroll {
+  border-top: 1px solid var(--ra-color-accent);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+}
+[data-theme="fuller"] .ra-table__table thead th {
+  font-family: var(--ra-font-label);
+  color: var(--ra-color-accent);
+  letter-spacing: var(--ra-tracking-wide);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+}
+[data-theme="fuller"] .ra-table__caption {
+  font-family: var(--ra-font-label);
+  color: var(--ra-color-muted);
+}
+
+/* Conclusion — a cyan closing rule and a mono label. */
+[data-theme="fuller"] .ra-conclusion {
+  border-top: 2px solid var(--ra-color-accent);
+}
+[data-theme="fuller"] .ra-conclusion__label {
+  font-family: var(--ra-font-label);
+  letter-spacing: var(--ra-tracking-caps);
+  color: var(--ra-color-accent);
+}
+[data-theme="fuller"] .ra-conclusion__takeaways li::before {
+  content: "→";
+  color: var(--ra-color-accent);
+}
+
+/* Links — drafting blue with a quiet underline (solid, low-key, not dotted —
+   dotted-on-dark shimmers). */
+[data-theme="fuller"] .ra-article a {
+  color: var(--ra-color-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--ra-color-accent) 45%, transparent);
+  text-underline-offset: 0.18em;
+}
+[data-theme="fuller"] .ra-article a:hover {
+  text-decoration-color: var(--ra-color-accent);
+}
+
+/* TOC — mono head, cyan active marker. */
+[data-theme="fuller"] .ra-toc__title {
+  font-family: var(--ra-font-label);
+  color: var(--ra-color-muted);
+  letter-spacing: var(--ra-tracking-caps);
+}
+[data-theme="fuller"] .ra-toc__index {
+  font-family: var(--ra-font-mono);
+  color: var(--ra-color-accent);
+}
+[data-theme="fuller"] .ra-toc__item--active a {
+  color: var(--ra-color-heading);
+}
+[data-theme="fuller"] .ra-toc__item--active .ra-toc__label {
+  text-decoration-color: var(--ra-color-accent);
+}

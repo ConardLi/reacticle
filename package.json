@@ -1,0 +1,53 @@
+{
+  "name": "reacticle",
+  "version": "0.2.6",
+  "description": "A React authoring protocol for AI-generated HTML articles, reports and interactive artifacts.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "scripts": {
+    "dev": "vite --config apps/site/vite.config.ts",
+    "build": "npm run build:lib && npm run build:site",
+    "build:lib": "vite build --config vite.config.ts && tsc -p tsconfig.build.json",
+    "build:site": "tsc --noEmit && vite build --config apps/site/vite.config.ts",
+    "build:report": "tsc --noEmit && vite build --config apps/site/vite.report.config.ts",
+    "preview:site": "vite preview --config apps/site/vite.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.26.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-singlefile": "^2.0.3"
+  },
+  "dependencies": {
+    "katex": "^0.17.0",
+    "prismjs": "^1.30.0"
+  }
+}

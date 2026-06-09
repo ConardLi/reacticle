@@ -1,0 +1,35 @@
+/* ---- Raw: the free-expression layer ----
+   No warning chrome, no dashed "danger" border. Custom HTML / React is a
+   first-class citizen here — the lively counterpart to the calm semantic
+   components — so it gets a clean, unobtrusive container, not a flag.
+   The container stays deliberately minimal (no padding, border or background)
+   so bespoke, per-article content is free to define its own look. */
+.ra-raw {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ra-space-2);
+  /* Set custom/bespoke blocks well apart from surrounding prose — they read as
+     distinct objects, not inline with the paragraph flow. Generous on purpose:
+     a bespoke visual gets a clear band of breathing room. Compounds with the
+     parent flex gap. */
+  margin-block: var(--ra-space-7);
+}
+
+.ra-raw__body {
+  min-width: 0;
+}
+
+.ra-raw__body > * {
+  max-width: 100%;
+}
+
+.ra-raw__caption {
+  font-family: var(--ra-font-label);
+  font-size: var(--ra-text-sm);
+  color: var(--ra-color-muted);
+}
+
+.ra-raw__caption::before {
+  content: "✦ ";
+  color: var(--ra-color-accent);
+}

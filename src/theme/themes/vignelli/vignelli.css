@@ -1,0 +1,252 @@
+/*
+ * Theme: vignelli — Massimo Vignelli / 瑞士国际主义（Swiss grotesque docs）
+ * See vignelli.md for the full design rationale.
+ *
+ * The only sans-body, cool-neutral theme. Same structural discipline as the
+ * serif themes (line-not-box, no fills, no shadow, no radius, color = meaning),
+ * rebuilt on a Swiss grid: one grotesque family at size, hairline rules, a
+ * single confident red, monospace for metadata. For product docs, specs,
+ * changelogs, SDK / API and AI-tool documentation.
+ *
+ *  - Cool neutral paper (a deliberate break from the two warm paper themes).
+ *  - Grotesque sans body & headings; weight discipline is carried by SIZE, not bold.
+ *  - One Swiss red carries structure & brand; a deeper oxidized red is risk.
+ */
+[data-theme="vignelli"] {
+  /* Surfaces & ink — cool neutral, near-white grid paper. */
+  --ra-color-bg: #f6f7f8;
+  --ra-color-bg-tint: #f6f7f8;
+  --ra-color-surface: #eceeef;
+  --ra-color-surface-2: #e2e5e7;
+  --ra-color-text: #1a1c1e;
+  --ra-color-heading: #0d0f11;
+  --ra-color-muted: #5b6166;
+  --ra-color-faint: #8b9197;
+  --ra-color-border: #d4d8db;
+  --ra-color-border-strong: #bcc2c6;
+
+  /* One confident Swiss red carries structure & brand (section numbers, links,
+     emphasis rules). A deeper oxidized red is reserved for genuine risk. */
+  --ra-color-accent: #d6201f;
+  --ra-color-accent-strong: #a81816;
+  --ra-color-accent-contrast: #ffffff;
+  --ra-color-accent-soft: #f6e2e1;
+
+  --ra-color-risk: #9e1410;
+  --ra-color-risk-soft: #f1dcdb;
+  --ra-color-warn: #9e1410;
+  --ra-color-warn-soft: #f1dcdb;
+  --ra-color-success: #2f6d4f;
+  --ra-color-success-soft: #dfeee7;
+  --ra-color-info: #d6201f;
+  --ra-color-info-soft: #f6e2e1;
+
+  /* Typography — one grotesque family at size; monospace for metadata chips. */
+  --ra-font-body: "Söhne", "Aktiv Grotesk", "Inter", "Helvetica Neue", "Arial",
+    "PingFang SC", system-ui, sans-serif;
+  --ra-font-heading: var(--ra-font-body);
+  --ra-font-label: var(--ra-font-body);
+  --ra-font-mono: "Söhne Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo,
+    Consolas, monospace;
+
+  /* Strong size contrast in the upper register is the Swiss way of building
+     hierarchy without resorting to heavy weights. */
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.84rem;
+  --ra-text-base: 1.0625rem;
+  --ra-text-lg: 1.2rem;
+  --ra-text-xl: 1.45rem;
+  --ra-text-2xl: 1.9rem;
+  --ra-text-3xl: 2.45rem;
+  --ra-text-4xl: 3.15rem;
+
+  --ra-leading-tight: 1.08;
+  --ra-leading-snug: 1.35;
+  --ra-leading-normal: 1.6;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 800;
+
+  /* The Swiss move: real bold display type. Hierarchy comes from heavy
+     grotesque weight + size, not from color or decoration. */
+  --ra-weight-display: 800;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 700;
+
+  /* Tight tracking keeps large grotesque headings crisp; caps for kickers. */
+  --ra-tracking-tighter: -0.02em;
+  --ra-tracking-tight: -0.012em;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.02em;
+  --ra-tracking-caps: 0.08em;
+
+  /* A regular grid rhythm — even, modular, no flourishes. */
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5.5rem;
+
+  /* Swiss-flat: no radius, no shadow; only a crisp, immediate transition. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: cubic-bezier(0.2, 0, 0, 1);
+  --ra-transition: 120ms var(--ra-ease);
+
+  --ra-content-width: 1120px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * vignelli — signature component anatomy (Swiss International Typographic)
+ *
+ * Same DOM and class contract as every other theme; only the *treatment*
+ * diverges. This is where real identity lives: oversized bold numerals, heavy
+ * black/red rules, a strict grid. Themes may restyle anatomy (the press theme
+ * already does this for .ra-aside) — components still only read --ra-* tokens,
+ * authors still only pick a theme.
+ * ========================================================================== */
+
+/* Hero — a heavy red top rule and a big, tight, bold title. */
+[data-theme="vignelli"] .ra-hero {
+  border-top: 6px solid var(--ra-color-accent);
+  border-bottom: 1px solid var(--ra-color-heading);
+  padding-top: var(--ra-space-4);
+  padding-bottom: var(--ra-space-5);
+  gap: var(--ra-space-3);
+}
+[data-theme="vignelli"] .ra-hero__eyebrow {
+  color: var(--ra-color-accent);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="vignelli"] .ra-hero__title {
+  font-size: calc(var(--ra-text-4xl) * 1.25);
+  letter-spacing: -0.035em;
+  line-height: 0.97;
+}
+[data-theme="vignelli"] .ra-hero__subtitle {
+  font-size: var(--ra-text-lg);
+  color: var(--ra-color-text);
+  max-width: 44rem;
+}
+
+/* Lead — drop the serif small-caps first line; a clean grotesque standfirst. */
+[data-theme="vignelli"] .ra-lead {
+  font-weight: var(--ra-weight-medium);
+}
+[data-theme="vignelli"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — THE signature: a heavy top rule + an oversized bold red numeral. */
+[data-theme="vignelli"] .ra-section {
+  border-top: 2px solid var(--ra-color-heading);
+  padding-top: var(--ra-space-3);
+}
+[data-theme="vignelli"] .ra-section__head {
+  align-items: baseline;
+  gap: var(--ra-space-4);
+}
+[data-theme="vignelli"] .ra-section__index {
+  font-family: var(--ra-font-body);
+  font-size: calc(var(--ra-text-4xl) * 1.3);
+  font-weight: var(--ra-weight-black);
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  color: var(--ra-color-accent);
+}
+[data-theme="vignelli"] .ra-section__title {
+  letter-spacing: -0.02em;
+}
+
+/* Subsection — a bold red ordinal before a heavy grotesque heading. */
+[data-theme="vignelli"] .ra-subsection__index {
+  font-family: var(--ra-font-body);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-accent);
+}
+
+/* Aside — explicitly NOT a left-border accent card (the slop vignelli forbids):
+   a heavy top rule with an uppercase accent label, framed top and bottom. */
+/* Aside — a hard-edged Swiss block: a thick tone bar over a flat tone tint,
+   square corners, a bold caps label. */
+[data-theme="vignelli"] .ra-aside {
+  border-left: none;
+  border-top: 4px solid var(--ra-aside-accent);
+  border-bottom: none;
+  border-radius: 0;
+  background: var(--ra-aside-soft);
+  padding: var(--ra-space-3) var(--ra-space-4) var(--ra-space-4);
+}
+[data-theme="vignelli"] .ra-aside__label {
+  font-weight: var(--ra-weight-bold);
+  letter-spacing: var(--ra-tracking-caps);
+}
+
+/* Quote — a thick black rule, not a thin one. */
+[data-theme="vignelli"] .ra-quote {
+  border-left: 4px solid var(--ra-color-heading);
+  padding-left: var(--ra-space-4);
+}
+
+/* Table — a Swiss header: a heavy rule and bold, black, uppercase heads. */
+[data-theme="vignelli"] .ra-table__scroll {
+  border-top: 2px solid var(--ra-color-heading);
+}
+[data-theme="vignelli"] .ra-table__table thead th {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="vignelli"] .ra-table__caption {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-semibold);
+}
+
+/* Conclusion — close on the brand red, with em-dash markers. */
+[data-theme="vignelli"] .ra-conclusion {
+  border-top: 4px solid var(--ra-color-accent);
+}
+[data-theme="vignelli"] .ra-conclusion__label {
+  font-weight: var(--ra-weight-bold);
+}
+[data-theme="vignelli"] .ra-conclusion__takeaways li::before {
+  content: "—";
+}
+
+/* Links — Vignelli loved red; links carry the accent, not the ink. */
+[data-theme="vignelli"] a {
+  color: var(--ra-color-accent);
+  text-decoration-color: var(--ra-color-accent);
+}
+[data-theme="vignelli"] a:hover {
+  text-decoration-color: var(--ra-color-accent-strong);
+}
+
+/* TOC — a heavy ruled head and bold active entries. */
+[data-theme="vignelli"] .ra-toc__title {
+  color: var(--ra-color-heading);
+  font-weight: var(--ra-weight-bold);
+  border-bottom: 2px solid var(--ra-color-heading);
+}
+[data-theme="vignelli"] .ra-toc__item--active a {
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-heading);
+}
+[data-theme="vignelli"] .ra-toc__item--active .ra-toc__label {
+  text-decoration-color: var(--ra-color-accent);
+}

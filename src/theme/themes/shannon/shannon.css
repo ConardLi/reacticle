@@ -1,0 +1,229 @@
+/*
+ * Theme: shannon — Claude Shannon / 暗色工程证据（Dark engineering evidence）
+ * See shannon.md for the full design rationale.
+ *
+ * The night-shift engineering sibling of tufte. Same data-ink discipline
+ * (line-not-box, no card fills, no shadow, no radius, color carries meaning),
+ * moved onto warm graphite paper for incident reviews, system-design notes,
+ * benchmarks and technical/AI explainers.
+ *
+ * Principles encoded here:
+ *  - Warm graphite ground (NOT pure black, NOT #0D1117 cyber-dark), warm-white ink.
+ *  - Exactly one signal color: instrument amber. A hotter red is reserved for risk.
+ *  - Technical humanist sans body; monospace is promoted (logs, metadata, numbers).
+ *  - Hairline dark rules; zero glow, zero gradient, zero neon.
+ */
+[data-theme="shannon"] {
+  /* Surfaces & ink — warm graphite paper, ink reads as warm white. */
+  --ra-color-bg: #1a1916;
+  --ra-color-bg-tint: #1a1916;
+  --ra-color-surface: #22211b;
+  --ra-color-surface-2: #2b2922;
+  --ra-color-text: #e8e4d8;
+  --ra-color-heading: #f4f1e8;
+  --ra-color-muted: #9a9484;
+  --ra-color-faint: #6f6a5d;
+  --ra-color-border: #34322a;
+  --ra-color-border-strong: #45423a;
+
+  /* One signal color — instrument amber — carries structure & emphasis.
+     Risk runs a hotter red-orange so alarm is never confused with brand. */
+  --ra-color-accent: #e0a73e;
+  --ra-color-accent-strong: #f0bd5a;
+  --ra-color-accent-contrast: #1a1916;
+  --ra-color-accent-soft: #2e2818;
+
+  --ra-color-risk: #e2614a;
+  --ra-color-risk-soft: #2f1f1a;
+  --ra-color-warn: #e2614a;
+  --ra-color-warn-soft: #2f1f1a;
+  --ra-color-success: #8fae6e;
+  --ra-color-success-soft: #232a1c;
+  --ra-color-info: #e0a73e;
+  --ra-color-info-soft: #2e2818;
+
+  /* Typography — technical humanist sans body; monospace promoted. */
+  --ra-font-body: "IBM Plex Sans", "Söhne", ui-sans-serif, system-ui,
+    -apple-system, "Helvetica Neue", "PingFang SC", sans-serif;
+  --ra-font-heading: var(--ra-font-body);
+  --ra-font-label: "IBM Plex Mono", "Berkeley Mono", "JetBrains Mono",
+    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --ra-font-mono: "IBM Plex Mono", "Berkeley Mono", "JetBrains Mono",
+    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Modest, technical scale — reads tight like a log / instrument readout. */
+  --ra-text-xs: 0.72rem;
+  --ra-text-sm: 0.82rem;
+  --ra-text-base: 1rem;
+  --ra-text-lg: 1.15rem;
+  --ra-text-xl: 1.35rem;
+  --ra-text-2xl: 1.7rem;
+  --ra-text-3xl: 2.05rem;
+  --ra-text-4xl: 2.5rem;
+
+  --ra-leading-tight: 1.2;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.6;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 600;
+  --ra-weight-black: 600;
+
+  /* Engineering labels read better with a touch of tracking; caps for kickers. */
+  --ra-tracking-tighter: 0;
+  --ra-tracking-tight: 0;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.04em;
+  --ra-tracking-caps: 0.12em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* No radius, no shadow — an instrument panel, not a glassy dashboard. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  /* A whisper of motion for terminal-like affordances; never decorative. */
+  --ra-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ra-transition: 120ms var(--ra-ease);
+
+  --ra-content-width: 1160px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * shannon — signature component anatomy (engineering terminal / instrument)
+ *
+ * Same DOM and class contract as every other theme; only the *treatment*
+ * diverges. Identity is built from structure, NOT texture — no gradient, no
+ * scanline wash, no glow (those are forbidden by shannon.md). The terminal
+ * feel comes from monospace, bracketed numerals, dashed rules and prompt
+ * glyphs. Components still only read --ra-* tokens; authors still pick a theme.
+ * ========================================================================== */
+
+/* Hero — a status-bar header: amber top rule, dashed bottom, mono eyebrow with
+   a cursor block, key=value mono meta. */
+[data-theme="shannon"] .ra-hero {
+  border-top: 1px solid var(--ra-color-accent);
+  border-bottom: 1px dashed var(--ra-color-border-strong);
+  padding: var(--ra-space-3) 0 var(--ra-space-4);
+}
+[data-theme="shannon"] .ra-hero__eyebrow {
+  font-family: var(--ra-font-mono);
+  color: var(--ra-color-accent);
+}
+[data-theme="shannon"] .ra-hero__eyebrow::before {
+  content: "\25AE ";
+}
+[data-theme="shannon"] .ra-hero__meta {
+  font-family: var(--ra-font-mono);
+}
+[data-theme="shannon"] .ra-hero__meta-item strong {
+  color: var(--ra-color-accent);
+}
+
+/* Lead — drop the serif small-caps first line. */
+[data-theme="shannon"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — THE signature: a dashed divider and a bracketed mono numeral. */
+[data-theme="shannon"] .ra-section {
+  border-top: 1px dashed var(--ra-color-border-strong);
+  padding-top: var(--ra-space-4);
+}
+[data-theme="shannon"] .ra-section__index {
+  font-family: var(--ra-font-mono);
+  font-size: var(--ra-text-lg);
+  font-weight: var(--ra-weight-medium);
+  color: var(--ra-color-accent);
+}
+[data-theme="shannon"] .ra-section__index::before {
+  content: "[";
+  color: var(--ra-color-faint);
+  margin-right: 0.35em;
+}
+[data-theme="shannon"] .ra-section__index::after {
+  content: "]";
+  color: var(--ra-color-faint);
+  margin-left: 0.35em;
+}
+
+/* Subsection — mono amber ordinal. */
+[data-theme="shannon"] .ra-subsection__index {
+  font-family: var(--ra-font-mono);
+  color: var(--ra-color-accent);
+}
+
+/* Aside — a terminal callout: amber left rule + dashed top, `//` mono label. */
+/* Aside — a lit instrument panel: tone-tinted dark fill behind a bright tone
+   bar; the label reads as a mono channel name. */
+[data-theme="shannon"] .ra-aside {
+  border-left: 2px solid var(--ra-aside-accent);
+  border-top: none;
+  border-bottom: none;
+  background: var(--ra-aside-soft);
+  padding: var(--ra-space-3) var(--ra-space-4);
+}
+[data-theme="shannon"] .ra-aside__label {
+  font-family: var(--ra-font-mono);
+  letter-spacing: 0.04em;
+}
+
+/* Table — instrument readout: mono amber header rule. */
+[data-theme="shannon"] .ra-table__scroll {
+  border-top: 1px solid var(--ra-color-accent);
+}
+[data-theme="shannon"] .ra-table__table thead th {
+  font-family: var(--ra-font-mono);
+  color: var(--ra-color-muted);
+}
+
+/* Conclusion — a shell prompt close. */
+[data-theme="shannon"] .ra-conclusion {
+  border-top: 1px solid var(--ra-color-accent);
+}
+[data-theme="shannon"] .ra-conclusion__label {
+  font-family: var(--ra-font-mono);
+}
+[data-theme="shannon"] .ra-conclusion__label::before {
+  content: "$ ";
+  color: var(--ra-color-faint);
+}
+[data-theme="shannon"] .ra-conclusion__takeaways li::before {
+  content: ">";
+  font-family: var(--ra-font-mono);
+}
+
+/* Links — carry the amber signal. */
+[data-theme="shannon"] a {
+  color: var(--ra-color-accent);
+  text-decoration-color: var(--ra-color-border-strong);
+}
+[data-theme="shannon"] a:hover {
+  text-decoration-color: var(--ra-color-accent);
+}
+
+/* TOC — mono head, amber active marker. */
+[data-theme="shannon"] .ra-toc__title {
+  font-family: var(--ra-font-mono);
+}
+[data-theme="shannon"] .ra-toc__item--active .ra-toc__label {
+  text-decoration-color: var(--ra-color-accent);
+}

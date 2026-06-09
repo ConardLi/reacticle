@@ -1,0 +1,229 @@
+/*
+ * Theme: knuth — Donald Knuth / 学术预印本（Academic preprint · Computer Modern）
+ * See knuth.md for the full design rationale.
+ *
+ * The formal scholarly register. Same discipline as the other themes
+ * (line-not-box, no fills, no shadow, no radius, color = meaning), but dressed
+ * as a journal / arXiv preprint: Computer Modern serif, numbered sections,
+ * figure / table / equation numbering, justified body, citation-dense,
+ * formula-forward. Distinct from tufte's essayistic marginalia.
+ *
+ *  - Bright, near-neutral printing paper; restrained hyperref-blue links.
+ *  - Computer Modern (Latin Modern) serif body & headings.
+ *  - The equation / figure is the protagonist; no decorative color.
+ */
+[data-theme="knuth"] {
+  /* Surfaces & ink — bright neutral printing paper. */
+  --ra-color-bg: #fcfcfa;
+  --ra-color-bg-tint: #fcfcfa;
+  --ra-color-surface: #f3f3ee;
+  --ra-color-surface-2: #eaeae2;
+  --ra-color-text: #1a1a18;
+  --ra-color-heading: #111110;
+  --ra-color-muted: #5a574e;
+  --ra-color-faint: #8a857a;
+  --ra-color-border: #dcdcd4;
+  --ra-color-border-strong: #c7c6bb;
+
+  /* Restrained academic blue (hyperref-style) carries links & structure.
+     Risk / success stay deep and bookish — never decorative. */
+  --ra-color-accent: #34507e;
+  --ra-color-accent-strong: #243a5e;
+  --ra-color-accent-contrast: #fcfcfa;
+  --ra-color-accent-soft: #e6ebf2;
+
+  --ra-color-risk: #9a2d1e;
+  --ra-color-risk-soft: #f0e1dc;
+  --ra-color-warn: #9a2d1e;
+  --ra-color-warn-soft: #f0e1dc;
+  --ra-color-success: #3c5a3a;
+  --ra-color-success-soft: #e4ebe1;
+  --ra-color-info: #34507e;
+  --ra-color-info-soft: #e6ebf2;
+
+  /* Typography — Computer Modern / Latin Modern serif, with graceful fallback. */
+  --ra-font-body: "Latin Modern Roman", "CMU Serif", "Source Serif 4",
+    "Spectral", Georgia, "Songti SC", "STSong", serif;
+  --ra-font-heading: var(--ra-font-body);
+  --ra-font-label: "Latin Modern Sans", "CMU Sans Serif", "Source Sans 3",
+    system-ui, -apple-system, "Helvetica Neue", "PingFang SC", sans-serif;
+  --ra-font-mono: "Latin Modern Mono", "CMU Typewriter Text", "JetBrains Mono",
+    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Journal-modest scale — reads like a printed paper at arm's length. */
+  --ra-text-xs: 0.74rem;
+  --ra-text-sm: 0.84rem;
+  --ra-text-base: 1.02rem;
+  --ra-text-lg: 1.15rem;
+  --ra-text-xl: 1.35rem;
+  --ra-text-2xl: 1.65rem;
+  --ra-text-3xl: 2rem;
+  --ra-text-4xl: 2.4rem;
+
+  --ra-leading-tight: 1.2;
+  --ra-leading-snug: 1.4;
+  --ra-leading-normal: 1.58;
+
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 700;
+  --ra-weight-bold: 700;
+  --ra-weight-black: 700;
+
+  /* Journal headings are bold serif — a paper's section heads have weight. */
+  --ra-weight-display: 700;
+  --ra-weight-h2: 700;
+  --ra-weight-h3: 700;
+
+  --ra-tracking-tighter: 0;
+  --ra-tracking-tight: 0;
+  --ra-tracking-normal: 0;
+  --ra-tracking-wide: 0.02em;
+  --ra-tracking-caps: 0.06em;
+
+  --ra-space-1: 0.25rem;
+  --ra-space-2: 0.5rem;
+  --ra-space-3: 0.75rem;
+  --ra-space-4: 1rem;
+  --ra-space-5: 1.5rem;
+  --ra-space-6: 2rem;
+  --ra-space-7: 3rem;
+  --ra-space-8: 4rem;
+  --ra-space-9: 5rem;
+
+  /* Print-flat: no radius, no shadow, no motion — it is a paper. */
+  --ra-radius-sm: 0;
+  --ra-radius-md: 0;
+  --ra-radius-lg: 0;
+  --ra-radius-xl: 0;
+  --ra-radius-full: 999px;
+  --ra-shadow-sm: none;
+  --ra-shadow-md: none;
+  --ra-shadow-lg: none;
+
+  --ra-ease: linear;
+  --ra-transition: 0ms linear;
+
+  /* A more centered, single-column journal page. */
+  --ra-content-width: 1040px;
+  --ra-toc-width: 13rem;
+}
+
+/* ============================================================================
+ * knuth — signature component anatomy (academic preprint / journal)
+ *
+ * Same DOM and class contract as every other theme; only the *treatment*
+ * diverges. The paper look: a centered titlepage, a ruled abstract, decimal
+ * section numbers run into bold serif headings, justified body, theorem-style
+ * asides. Components still only read --ra-* tokens; authors still pick a theme.
+ * ========================================================================== */
+
+/* Hero — a centered journal titlepage. */
+[data-theme="knuth"] .ra-hero {
+  text-align: center;
+  align-items: center;
+  border-bottom: 1px solid var(--ra-color-heading);
+  padding-bottom: var(--ra-space-4);
+}
+[data-theme="knuth"] .ra-hero__eyebrow {
+  font-family: var(--ra-font-mono);
+  color: var(--ra-color-muted);
+}
+[data-theme="knuth"] .ra-hero__subtitle {
+  max-width: 40rem;
+}
+[data-theme="knuth"] .ra-hero__meta {
+  justify-content: center;
+}
+
+/* Lead — the Abstract: a ruled, indented, justified block set apart. */
+[data-theme="knuth"] .ra-lead {
+  font-size: var(--ra-text-base);
+  text-align: justify;
+  color: var(--ra-color-muted);
+  border-top: 1px solid var(--ra-color-border-strong);
+  border-bottom: 1px solid var(--ra-color-border-strong);
+  padding: var(--ra-space-3) 0;
+  margin: 0 var(--ra-space-7);
+}
+[data-theme="knuth"] .ra-lead::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+/* Section — decimal number run into a bold serif heading; no divider rule. */
+[data-theme="knuth"] .ra-section__index {
+  font-family: var(--ra-font-body);
+  font-size: var(--ra-text-xl);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-heading);
+}
+[data-theme="knuth"] .ra-section__index::after {
+  content: ".";
+}
+[data-theme="knuth"] .ra-subsection__index {
+  font-family: var(--ra-font-body);
+  font-weight: var(--ra-weight-bold);
+  color: var(--ra-color-heading);
+}
+[data-theme="knuth"] .ra-subsection__index::after {
+  content: ".";
+}
+
+/* Body — justified, like a typeset paper (base.css already sets hyphens). */
+[data-theme="knuth"] .ra-section__body > p,
+[data-theme="knuth"] .ra-subsection__body > p,
+[data-theme="knuth"] .ra-conclusion__body {
+  text-align: justify;
+}
+
+/* Aside — a theorem / proposition statement: ruled, bold serif run-in label. */
+[data-theme="knuth"] .ra-aside {
+  border-left: none;
+  border-top: 1px solid var(--ra-color-heading);
+  border-bottom: 1px solid var(--ra-color-border);
+  background: none;
+  padding: var(--ra-space-3) 0;
+}
+[data-theme="knuth"] .ra-aside__label {
+  font-family: var(--ra-font-body);
+  font-size: var(--ra-text-base);
+  font-weight: var(--ra-weight-bold);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ra-color-heading);
+}
+/* A theorem statement carries no glyph — it is set in italics-free serif and
+   named, like print. */
+[data-theme="knuth"] .ra-aside__label::before {
+  content: none !important;
+}
+
+/* Quote — an indented epigraph, both margins. */
+[data-theme="knuth"] .ra-quote {
+  border-left: none;
+  padding: 0 var(--ra-space-7);
+  text-align: justify;
+}
+[data-theme="knuth"] .ra-quote__by {
+  text-align: right;
+}
+
+/* Conclusion — a single ruled close, serif label. */
+[data-theme="knuth"] .ra-conclusion__label {
+  font-family: var(--ra-font-body);
+  font-size: var(--ra-text-lg);
+  font-weight: var(--ra-weight-bold);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ra-color-heading);
+}
+
+/* Links — restrained hyperref blue. */
+[data-theme="knuth"] a {
+  color: var(--ra-color-accent);
+  text-decoration-color: var(--ra-color-accent-soft);
+}
+[data-theme="knuth"] a:hover {
+  text-decoration-color: var(--ra-color-accent);
+}
