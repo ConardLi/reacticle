@@ -4,7 +4,7 @@
 
 > **AI 时代的 HTML 文章协议** — 让 AI 不再手写裸 HTML，而是用一套受限、语义化的 React 组件契约，生成稳定、漂亮、可交互、自包含的 HTML 文章与报告。
 
-[English](./README.md) · [npm 包](https://www.npmjs.com/package/reacticle) · [配套 Skill：`beautiful-article`](https://github.com/ConardLi/garden-skills)
+[English](./README.md) · [GitHub](https://github.com/ConardLi/reacticle) · [npm 包](https://www.npmjs.com/package/reacticle) · [配套 Skill：`beautiful-article`](https://github.com/ConardLi/garden-skills)
 
 <p align="left">
   <a href="https://www.npmjs.com/package/reacticle"><img src="https://img.shields.io/npm/v/reacticle.svg?color=111&labelColor=555" alt="npm version"></a>
@@ -69,6 +69,87 @@ ReActicle 是**运行时的组件协议**，它**不**规定编辑流程 —— 
 - **自包含构建。** Vite + `vite-plugin-singlefile` 生成单文件 HTML，CSS / JS 全内联 —— 断网可开、作为文件分享、可直接打印 PDF。
 - **为 AI 写作而设计。** 每个主题目录都附带 `<theme>.md`，告诉 Agent 用什么照片、什么代码风格、什么 Raw 套路，以及**反模式**。
 - **Editorial Console 文档站。** `apps/site` 把文档、组件 live 参考与 Gallery 合并成一个应用，本身完全用 ReActicle 写成。
+
+---
+
+## [作品展示](https://mmh1.top/#/ai-article) —— 用 ReActicle + `beautiful-article` 写出来的文章
+
+下面是真实的长文，每一篇都是 AI Agent 跑 [`beautiful-article`](https://github.com/ConardLi/garden-skills) Skill、以 ReActicle 为组件协议端到端生成的。点封面进入 live 单文件 HTML。
+
+<table>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/tools">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/tools.webp" alt="Agent Tools 设计的最佳实践" width="320">
+<br><b>Agent Tools 设计的最佳实践</b>
+</a>
+<br><sub>主题 · Freddie · 长文 · 21 min</sub>
+<br><sup>Anthropic 工程团队关于 Tools 的五条原则，与一套评测驱动的方法。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/skill">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/skill.webp" alt="Agent Skill 是如何进化的？" width="320">
+<br><b>Agent Skill 是如何进化的？</b>
+</a>
+<br><sub>主题 · Freddie · 解释文 · 8 min</sub>
+<br><sup>把 Skill 文档当成被训练的对象，而不是被复制粘贴的 prompt。</sup>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/harness">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/harness.webp" alt="Agent Harness 的解剖图" width="320">
+<br><b>Agent Harness 的解剖图</b>
+</a>
+<br><sub>主题 · Vignelli · 长文 · 12 min</sub>
+<br><sup>智能在模型里；让智能变得有用的，是它周围的那套系统。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/prompt-cache">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/prompt-cache.webp" alt="提示词缓存对 Agent 有多重要？" width="320">
+<br><b>提示词缓存对 Agent 有多重要？</b>
+</a>
+<br><sub>主题 · Bayer · 长文 · 15 min</sub>
+<br><sup>缓存命中率是 Agent 的 SLO，Claude Code 团队的反直觉经验。</sup>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/context">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/context.webp" alt="面向 Agent 的高效上下文工程" width="320">
+<br><b>面向 Agent 的高效上下文工程</b>
+</a>
+<br><sub>主题 · Tufte · 长文 · 16 min</sub>
+<br><sup>本文探讨如何高效地筛选与管理驱动 AI Agent 运转的上下文。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/transformer">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/transformer.webp" alt="Attention Is All You Need" width="320">
+<br><b>Attention Is All You Need</b>
+</a>
+<br><sub>主题 · Tufte · 长文 · 30 min</sub>
+<br><sup>一篇重塑现代 AI 的论文，逐层拆给你看。</sup>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/agent-eval">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/agent-eval.webp" alt="把 AI Agent 的评测讲清楚" width="320">
+<br><b>把 AI Agent 的评测讲清楚</b>
+</a>
+<br><sub>主题 · Tufte · 长文 · 25 min</sub>
+<br><sup>让 Agent 有用的那些能力，恰恰让它难以评测 —— 一份来自 Anthropic 的指南。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/agent-loop-codex">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/agent-loop-codex.webp" alt="Codex 的 Agent Loop 是怎么做的？" width="320">
+<br><b>Codex 的 Agent Loop 是怎么做的？</b>
+</a>
+<br><sub>主题 · Sottsass · 长文 · 18 min</sub>
+<br><sup>OpenAI 官方分享：在 Responses API 之上，一条对话是如何被反复"展开"的。</sup>
+</td>
+</tr>
+</table>
 
 ---
 

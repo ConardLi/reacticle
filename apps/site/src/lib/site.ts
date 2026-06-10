@@ -2,8 +2,8 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { THEMES, type ThemeName } from "reacticle";
 
 // Single place to edit the public repo URL once it exists.
-export const REPO_URL = "https://github.com/your-org/reacticle";
-export const VERSION = "v0.1.0";
+export const REPO_URL = "https://github.com/ConardLi/reacticle";
+export const VERSION = "v0.2.6";
 
 export type Route =
   | "home"

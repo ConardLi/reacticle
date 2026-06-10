@@ -4,7 +4,7 @@
 
 > **An HTML article protocol for the AI era** — instead of letting AI hand-write raw HTML, give it a constrained, semantic React component contract that produces stable, beautiful, interactive, self-contained HTML articles and reports.
 
-[中文文档](./README.zh-CN.md) · [npm package](https://www.npmjs.com/package/reacticle) · [Companion skill: `beautiful-article`](https://github.com/ConardLi/garden-skills)
+[中文文档](./README.zh-CN.md) · [GitHub](https://github.com/ConardLi/reacticle) · [npm package](https://www.npmjs.com/package/reacticle) · [Companion skill: `beautiful-article`](https://github.com/ConardLi/garden-skills)
 
 <p align="left">
   <a href="https://www.npmjs.com/package/reacticle"><img src="https://img.shields.io/npm/v/reacticle.svg?color=111&labelColor=555" alt="npm version"></a>
@@ -69,6 +69,87 @@ You can use them independently: the skill works because it has ReActicle to targ
 - **Self-contained build.** Vite + `vite-plugin-singlefile` produce one HTML file with all CSS and JS inlined — works offline, shareable as a file, printable to PDF.
 - **Designed for AI authoring.** Each theme directory ships a `<theme>.md` profile telling the agent what photography, what code style, what Raw idioms, what *anti-patterns* belong to that theme.
 - **Editorial Console docs site.** `apps/site` is a unified docs + component reference + Gallery, deployed as one app — itself written entirely in ReActicle.
+
+---
+
+## [Showcase](https://mmh1.top/#/ai-article) — articles built with ReActicle + `beautiful-article`
+
+Real long-form articles, each authored end-to-end by an AI agent running the [`beautiful-article`](https://github.com/ConardLi/garden-skills) skill against ReActicle. Click any cover to open the live, single-file HTML article.
+
+<table>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/tools">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/tools.webp" alt="Agent Tools 设计的最佳实践" width="320">
+<br><b>Agent Tools 设计的最佳实践</b>
+</a>
+<br><sub>Theme · Freddie · 长文 · 21 min</sub>
+<br><sup>Anthropic 工程团队关于 Tools 的五条原则，与一套评测驱动的方法。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/skill">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/skill.webp" alt="Agent Skill 是如何进化的？" width="320">
+<br><b>Agent Skill 是如何进化的？</b>
+</a>
+<br><sub>Theme · Freddie · 解释文 · 8 min</sub>
+<br><sup>把 Skill 文档当成被训练的对象，而不是被复制粘贴的 prompt。</sup>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/harness">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/harness.webp" alt="Agent Harness 的解剖图" width="320">
+<br><b>Agent Harness 的解剖图</b>
+</a>
+<br><sub>Theme · Vignelli · 长文 · 12 min</sub>
+<br><sup>智能在模型里；让智能变得有用的，是它周围的那套系统。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/prompt-cache">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/prompt-cache.webp" alt="提示词缓存对 Agent 有多重要？" width="320">
+<br><b>提示词缓存对 Agent 有多重要？</b>
+</a>
+<br><sub>Theme · Bayer · 长文 · 15 min</sub>
+<br><sup>缓存命中率是 Agent 的 SLO，Claude Code 团队的反直觉经验。</sup>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/context">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/context.webp" alt="面向 Agent 的高效上下文工程" width="320">
+<br><b>面向 Agent 的高效上下文工程</b>
+</a>
+<br><sub>Theme · Tufte · 长文 · 16 min</sub>
+<br><sup>本文探讨如何高效地筛选与管理驱动 AI Agent 运转的上下文。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/transformer">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/transformer.webp" alt="Attention Is All You Need" width="320">
+<br><b>Attention Is All You Need</b>
+</a>
+<br><sub>Theme · Tufte · 长文 · 30 min</sub>
+<br><sup>一篇重塑现代 AI 的论文，逐层拆给你看。</sup>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/agent-eval">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/agent-eval.webp" alt="把 AI Agent 的评测讲清楚" width="320">
+<br><b>把 AI Agent 的评测讲清楚</b>
+</a>
+<br><sub>Theme · Tufte · 长文 · 25 min</sub>
+<br><sup>让 Agent 有用的那些能力，恰恰让它难以评测 — 来自 Anthropic 的指南。</sup>
+</td>
+<td width="50%" valign="top" align="center">
+<a href="https://mmh1.top/#/ai-article/agent-loop-codex">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/agent-loop-codex.webp" alt="Codex 的 Agent Loop 是怎么做的？" width="320">
+<br><b>Codex 的 Agent Loop 是怎么做的？</b>
+</a>
+<br><sub>Theme · Sottsass · 长文 · 18 min</sub>
+<br><sup>OpenAI 官方分享：在 Responses API 之上，一条对话是如何被反复"展开"的。</sup>
+</td>
+</tr>
+</table>
 
 ---
 

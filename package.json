@@ -4,6 +4,29 @@
   "description": "A React authoring protocol for AI-generated HTML articles, reports and interactive artifacts.",
   "type": "module",
   "license": "MIT",
+  "author": "ConardLi",
+  "homepage": "https://github.com/ConardLi/reacticle#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConardLi/reacticle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ConardLi/reacticle/issues"
+  },
+  "keywords": [
+    "react",
+    "ai",
+    "article",
+    "long-form",
+    "html",
+    "report",
+    "themes",
+    "tufte",
+    "editorial",
+    "single-file",
+    "beautiful-article",
+    "reacticle"
+  ],
   "sideEffects": [
     "**/*.css"
   ],
