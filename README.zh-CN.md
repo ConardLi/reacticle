@@ -328,6 +328,116 @@ ReActicle 自带 11 套主题，每一套都是一份完整的编辑系统：
 
 ---
 
+## [主题图册](https://rearticle.mmh1.top/#/gallery) —— 每个主题一篇示范长文
+
+每套主题都附带一篇**示范长文**，从排版、摄影、代码、公式到 Raw 自由块全部贯彻该主题人格。点封面进入 live 单文件 HTML。
+
+<table>
+<tr>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/caffeine-half-life">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-tufte.webp" alt="Tufte · Data-Ink" width="260">
+<br><b>Tufte</b> · Data-Ink
+</a>
+<br><sub>咖啡因与睡眠 · 数据笔记</sub>
+<br><sup>Edward Tufte 数据墨水，证据优先，发丝级图表与最朴素的版式。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/movable-type">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-press.webp" alt="Press · 书卷" width="260">
+<br><b>Press</b> · 书卷
+</a>
+<br><sub>活字之后 · 随笔</sub>
+<br><sup>Stripe Press 式书卷长读物：会落定的标题、氧化血红首字母、纯正文之美。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/pool-exhaustion">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-shannon.webp" alt="Shannon · 工程暗色" width="260">
+<br><b>Shannon</b> · 工程暗色
+</a>
+<br><sub>连接池耗尽 · 故障复盘</sub>
+<br><sup>贝尔实验室技术论文血统，暗底黄金信号、回压依赖、夜间作战气质。</sup>
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/orbit-spec">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-vignelli.webp" alt="Vignelli · 瑞士" width="260">
+<br><b>Vignelli</b> · 瑞士网格
+</a>
+<br><sub>Orbit 设计系统规格 · 规格</sub>
+<br><sup>Massimo Vignelli 网格至上、grotesque 字族、瑞士红只承载结构。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/linear-attention">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-knuth.webp" alt="Knuth · 学术" width="260">
+<br><b>Knuth</b> · 学术
+</a>
+<br><sub>线性化自注意力 · 预印本</sub>
+<br><sup>Donald Knuth / Computer Modern，编号小节、命题与证明、arXiv 草稿气质。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/first-newsletter">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-freddie.webp" alt="Freddie · 暖黄" width="260">
+<br><b>Freddie</b> · 暖黄
+</a>
+<br><sub>第一封 Newsletter · 上手指南</sub>
+<br><sup>Mailchimp Freddie 黑字荧光，亲和插画 + 不端着的产品上手语气。</sup>
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/slow-breathing">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-andy.webp" alt="Andy · 静谧" width="260">
+<br><b>Andy</b> · 静谧
+</a>
+<br><sub>把呼吸放慢 · 练习</sub>
+<br><sup>柔软圆润、呼吸-神经跷跷板，让人慢下来的练习气质。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/front-page">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-bodoni.webp" alt="Bodoni · 报刊" width="260">
+<br><b>Bodoni</b> · 报刊
+</a>
+<br><sub>头版的消亡 · 特稿</sub>
+<br><sup>高对比 Didone 报刊气质，黑白大报、对折线之上的分量。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/geometry-of-meaning">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-bayer.webp" alt="Bayer · 包豪斯" width="260">
+<br><b>Bayer</b> · 包豪斯
+</a>
+<br><sub>形、色、网格 · 教学</sub>
+<br><sup>Herbert Bayer 包豪斯三原色几何，形有性格、色有重量。</sup>
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/rate-limiter-spec">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-fuller.webp" alt="Fuller · 蓝图" width="260">
+<br><b>Fuller</b> · 蓝图
+</a>
+<br><sub>限流器设计规格 · 系统设计</sub>
+<br><sup>Buckminster Fuller 工程蓝图，方格纸拓扑、令牌桶模拟，可照着实现。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="https://rearticle.mmh1.top/#/gallery/color-clash">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-sottsass.webp" alt="Sottsass · 孟菲斯" width="260">
+<br><b>Sottsass</b> · 孟菲斯
+</a>
+<br><sub>撞色不翻车 · 设计随笔</sub>
+<br><sup>Memphis 80s 撞色，黑描边、硬投影、轻微旋转的不正经语法。</sup>
+</td>
+<td width="33%" valign="top" align="center">
+&nbsp;
+</td>
+</tr>
+</table>
+
+> 在线图册（支持主题切换、搜索与过滤）：<https://rearticle.mmh1.top/#/gallery>。
+
+---
+
 ## 统一站点（`apps/site`）
 
 `apps/site` 是 `reacticle` 唯一的真实消费者，只走公共入口、不引内部目录。设计语言为 **Editorial Console**：暖墨 / 纸双模式（Paper / Ink）、编辑级衬线 + monospace UI、发丝线工程感、单一 Tufte 朱红强调色。站点自己的设计 token 在 `--rd-*` 命名空间，与库的 `--ra-*` 完全隔离。
