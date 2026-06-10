@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import "./structure.css";
 
 export interface TocItem {
@@ -17,6 +17,36 @@ export interface TOCProps {
   items: TocItem[];
   /** Heading shown above the list. */
   title?: string;
+}
+
+/**
+ * Plain `href="#id"` would replace the whole `location.hash` — fatal under
+ * hash-routed hosts (the doc site, the gallery), where it nukes the route and
+ * sends the user back home. We intercept the click, scroll manually, and update
+ * the URL via `replaceState` so the route hash is preserved and no hashchange
+ * fires.
+ */
+function handleAnchorClick(id: string) {
+  return (e: MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    const el = typeof document !== "undefined" ? document.getElementById(id) : null;
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (typeof history !== "undefined" && history.replaceState) {
+      // Preserve the route hash (the part before any second `#`) and append/replace
+      // the trailing anchor. Empty hash → fall back to plain `#id`.
+      const { pathname, search, hash } = window.location;
+      const second = hash.indexOf("#", 1);
+      const route = second >= 0 ? hash.slice(0, second) : hash;
+      const next = `${pathname}${search}${route || ""}#${id}`;
+      try {
+        history.replaceState(null, "", next);
+      } catch {
+        /* ignore */
+      }
+    }
+  };
 }
 
 /** A left-hand table of contents with scroll-spy highlighting. */
@@ -55,7 +85,7 @@ export function TOC({ items, title = "目录" }: TOCProps) {
           if (active === it.id) classes.push("ra-toc__item--active");
           return (
             <li key={it.id} className={classes.join(" ")}>
-              <a href={`#${it.id}`}>
+              <a href={`#${it.id}`} onClick={handleAnchorClick(it.id)}>
                 {it.index ? <span className="ra-toc__index">{it.index}</span> : null}
                 <span className="ra-toc__label">{it.title ?? "未命名章节"}</span>
               </a>

@@ -37,6 +37,13 @@ export function Footer() {
             <a href={`${REPO_URL}/blob/main/README.md`} target="_blank" rel="noreferrer noopener">
               README
             </a>
+            <a
+              href="https://github.com/ConardLi/garden-skills"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              beautiful-article skill ↗
+            </a>
           </div>
         </div>
       </div>

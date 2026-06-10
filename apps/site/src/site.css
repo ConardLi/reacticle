@@ -1045,6 +1045,23 @@ code.inline {
   gap: var(--rd-s3);
   margin-top: var(--rd-s6);
 }
+.hero__pair {
+  margin-top: var(--rd-s4);
+  font-family: var(--rd-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--rd-muted);
+}
+.hero__pair a {
+  color: var(--rd-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rd-rule);
+  padding-bottom: 1px;
+}
+.hero__pair a:hover {
+  border-bottom-color: var(--rd-accent);
+  color: var(--rd-accent);
+}
 
 .btn {
   display: inline-flex;

@@ -218,7 +218,7 @@ ReActicle 是**运行时的组件协议**，它**不**规定编辑流程 —— 
 </td>
 <td width="33%" valign="top" align="center">
 <a href="https://rearticle.mmh1.top/#/gallery/linear-attention">
-<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/theam-knuth.webp" alt="Knuth · 学术" width="260">
+<img src="https://raw.githubusercontent.com/ConardLi/assets/main/imgs/article/knuth.png" alt="Knuth · 学术" width="260">
 <br><b>Knuth</b> · 学术
 </a>
 <br><sub>线性化自注意力 · 预印本</sub>

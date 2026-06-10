@@ -89,6 +89,18 @@ export function HomePage() {
                 看效果演示
               </a>
             </div>
+            <p className="hero__pair">
+              想让 AI Agent 端到端地写文章？搭配独立 Skill{" "}
+              <a
+                href="https://github.com/ConardLi/garden-skills"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                beautiful-article
+              </a>{" "}
+              使用 → 也可以查看{" "}
+              <a href="#/skill">集成说明</a>。
+            </p>
           </div>
 
           <div className="hero__artifact">
