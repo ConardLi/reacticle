@@ -72,6 +72,27 @@ You can use them independently: the skill works because it has ReActicle to targ
 
 ---
 
+## Documentation
+
+The full developer & authoring docs live at the official site — **<https://rearticle.mmh1.top/>**. The README is just the pitch; everything else is there.
+
+| Track | Page | What it covers |
+| --- | --- | --- |
+| **Start** | [Get started](https://rearticle.mmh1.top/#/start) | Install, minimal scaffold, build & export, missing-field UX |
+| **Theming** | [Theme contracts](https://rearticle.mmh1.top/#/theming) | `--ra-*` token system · how a theme is two artifacts (`.css` + `.md`) · adding a theme |
+| **Authoring** | [Raw free-layer guide](https://rearticle.mmh1.top/#/raw) | When to reach for `<Raw>`, the token contract, anti-patterns & checklists |
+| | [Export & distribution](https://rearticle.mmh1.top/#/export) | `ExportBar`, PDF / single-file HTML, `actionItemsToMarkdown` / `decisionToPrompt` |
+| | [Writing recipes](https://rearticle.mmh1.top/#/recipes) | Skeletons for incident, spec, essay, explainer, decision, math, raw-interactive |
+| | [Markdown migration](https://rearticle.mmh1.top/#/markdown) | One-to-one mapping table from Markdown to ReActicle components |
+| **Pairing** | [Skill integration](https://rearticle.mmh1.top/#/skill) | How ReActicle pairs with the `beautiful-article` skill (Source → Plan → Build → Review → Repair → Deliver) |
+| **Reference** | [Components](https://rearticle.mmh1.top/#/components) | Live preview + props table + copyable code for every component |
+| | [Theme Gallery](https://rearticle.mmh1.top/#/gallery) | One specimen long-form article per theme |
+| **Engineering** | [Architecture](https://rearticle.mmh1.top/#/architecture) | Engineering boundaries, dependency rules, single-file build |
+| | [Contributing](https://rearticle.mmh1.top/#/contributing) | PR checklist for adding a component / theme / gallery entry |
+| **Help** | [FAQ](https://rearticle.mmh1.top/#/faq) | Concept, Raw, export, missing fields, install, ReActicle vs neighbors |
+
+---
+
 ## [Showcase](https://mmh1.top/#/ai-article) — articles built with ReActicle + `beautiful-article`
 
 Real long-form articles, each authored end-to-end by an AI agent running the [`beautiful-article`](https://github.com/ConardLi/garden-skills) skill against ReActicle. Click any cover to open the live, single-file HTML article.
@@ -153,185 +174,9 @@ Real long-form articles, each authored end-to-end by an AI agent running the [`b
 
 ---
 
-## Quick start
-
-### Install
-
-```bash
-npm install reacticle react react-dom
-```
-
-### Use
-
-```tsx
-import {
-  ThemeProvider,
-  Article,
-  Hero,
-  Lead,
-  Section,
-  Summary,
-  Quote,
-  Raw,
-} from "reacticle";
-import "reacticle/styles.css";
-
-export default function App() {
-  return (
-    <ThemeProvider theme="tufte">
-      <Article width="regular">
-        <Hero
-          eyebrow="Field notes"
-          title="The geometry of meaning"
-          meta={{ author: "ConardLi", date: "2026-06-08" }}
-        />
-        <Lead>
-          A short field note on how embedding spaces fold semantics into
-          measurable geometry.
-        </Lead>
-
-        <Section title="What changes when we measure meaning">
-          <p>
-            Meaning, in this view, is not a label but a position — a vector in
-            a space whose distances we can compare.
-          </p>
-          <Summary>
-            Distance ≠ semantic distance, but a usable approximation under
-            most editorial workloads.
-          </Summary>
-          <Quote attribution="Edward R. Tufte">
-            Above all else show the data.
-          </Quote>
-        </Section>
-
-        <Section title="A custom visual block">
-          <Raw>
-            {/* Anything goes here — SVG, HTML, React — but use theme tokens. */}
-            <div
-              style={{
-                border: "1px solid var(--ra-rule)",
-                padding: "var(--ra-space-4)",
-                color: "var(--ra-fg)",
-                background: "var(--ra-surface)",
-                fontFamily: "var(--ra-font-display)",
-              }}
-            >
-              Custom block · uses --ra-* tokens · rewires on theme change.
-            </div>
-          </Raw>
-        </Section>
-      </Article>
-    </ThemeProvider>
-  );
-}
-```
-
-### Switch theme
-
-```tsx
-<ThemeProvider theme="press">  {/* try: tufte · press · bayer · bodoni · vignelli · sottsass · freddie · andy · fuller · knuth · shannon */}
-  ...
-</ThemeProvider>
-```
-
-Every component, every Raw block, the cover, the print stylesheet — all rewire from a single line.
-
----
-
-## Working on this repo
-
-This repo is a **single-package component library + unified site**:
-
-- **Library** — root package `reacticle`. `src/` is the only publishable code: components, themes, exports, public entry.
-- **Unified site** — `apps/site` merges docs, component live reference and Gallery into one application. One visual language, one deploy.
-
-```bash
-npm install
-npm run dev          # unified site (docs · components · gallery)
-```
-
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the unified site (docs / components / gallery) |
-| `npm run build:lib` | Build the component library |
-| `npm run build:site` | Build the unified site |
-| `npm run build:report` | Build a self-contained single-file HTML report |
-| `npm run build` | Build library, then site |
-| `npm run preview:site` | Preview the built site |
-| `npm run typecheck` | Whole-project TypeScript check |
-
-```text
-src/
-  components/            semantic components
-  theme/                 token contract, themes, print styles
-  export/                PDF / copy / export utilities
-  index.ts               the only public entry
-
-apps/
-  site/                  unified site: docs + component reference + gallery + single-file report build
-
-docs/architecture/       engineering boundaries
-```
-
-Full architecture: [`docs/architecture/engineering-architecture.md`](./docs/architecture/engineering-architecture.md)
-Coverage map vs. Markdown: [`docs/markdown-coverage-plan.md`](./docs/markdown-coverage-plan.md)
-
----
-
-## Components
-
-External consumers may only import from the package entry:
-
-```tsx
-import { ThemeProvider, Article, Hero, Section } from "reacticle";
-```
-
-| Group | Components |
-| --- | --- |
-| **Structure** | `Article`, `Hero`, `Lead`, `Section`, `Subsection`, `TOC`, `Conclusion` |
-| **Insight** | `Summary`, `Aside`, `Quote` |
-| **Media** | `Image`, `Video`, `Audio` |
-| **Data** | `Table` |
-| **Decision** | `RiskList`, `Decision`, `ActionList`, `Checkpoint`, `Tradeoff`, `Incident` |
-| **Technical** | `CodeBlock`, `Formula`, `DiffReview`, `HighlightedCode` |
-| **Interaction** | `Detail`, `Tabs` |
-| **Free layer** | `Raw` |
-| **Export** | `ExportBar`, `actionItemsToMarkdown`, `decisionToPrompt`, `copyToClipboard` |
-
----
-
-## Themes
-
-ReActicle ships 11 themes, each a complete editorial system:
-
-| Theme | Personality |
-| --- | --- |
-| `tufte` | Edward Tufte / data-ink, evidence-first |
-| `press` | Stripe Press / book-like long read |
-| `bayer` | Bauhaus / Herbert Bayer geometric editorial |
-| `bodoni` | High-contrast didone / fashion editorial |
-| `vignelli` | Massimo Vignelli / Helvetica grid system |
-| `sottsass` | Memphis / playful postmodern |
-| `freddie` | Mailchimp Freddie / friendly illustrative |
-| `andy` | Andy Warhol / pop screenprint |
-| `fuller` | Buckminster Fuller / engineering blueprint |
-| `knuth` | Donald Knuth / Computer Modern, technical-press |
-| `shannon` | Bell Labs / Shannon technical paper |
-
-Each theme is **two artifacts**:
-
-1. `<theme>.css` — the `--ra-*` token bundle and selectors.
-2. `<theme>.md` — an authoring profile the AI reads *before* writing. It must specify:
-   - **Code & formula style** — how `CodeBlock` / `Formula` highlights, line numbers, math whitespace and Prism token colors match the theme.
-   - **Media style** — what photography, screenshots, charts, video, audio textures the theme accepts; what it rejects.
-   - **Raw layer style** — what line weight, motion, density and token usage Raw SVG / interaction / animation should adopt.
-   - **Anti-patterns** — what visual moves break the theme.
-
-This is what makes themes survive AI generation: the agent doesn't pick visuals freely — it picks visuals **the theme document allows**.
-
----
-
 ## [Theme Gallery](https://rearticle.mmh1.top/#/gallery) — one specimen article per theme
+
+> 11 themes shipped. Full theme contracts (`.css` token bundle + `.md` authoring profile, anti-patterns, code/media style) are documented at [Theming](https://rearticle.mmh1.top/#/theming).
 
 Every theme ships with a long-form **specimen article** that lives the theme end-to-end — typography, photography, code, formulas, Raw blocks, the works. Click any cover to read the live article; click the theme name to jump to that theme's section in the docs.
 
@@ -441,39 +286,6 @@ Every theme ships with a long-form **specimen article** that lives the theme end
 
 ---
 
-## The unified site (`apps/site`)
-
-`apps/site` is the only real consumer of `reacticle`. It uses the public entry only — never internal paths. Its design language is **Editorial Console**: dual Paper / Ink modes, editorial serif + monospace UI, hairline rules, single Tufte vermillion accent. The site's own design tokens live under `--rd-*` and never collide with the library's `--ra-*`.
-
-Sections:
-
-- **Overview** — the protocol pitch, a live mini article, design principles, component catalog
-- **Get Started** — install, minimal scaffold, build & export, missing-field UX
-- **Components** — every component: live preview + props table + copyable code
-- **Theming** — token contract, the Tufte case study, how to add a theme
-- **Gallery** — real reports with theme switching
-- **Architecture** — engineering boundaries and dependency rules
-
-### Single-file HTML reports
-
-```bash
-npm run build:report
-```
-
-Outputs `dist-report/report.html`, all CSS and JS inlined — the report opens with no network.
-
----
-
-## Engineering boundaries
-
-1. The library does not depend on the site.
-2. The site only consumes the library through the `reacticle` public entry.
-3. Themes are part of the library; theme previews and theme docs live in the site.
-4. Example articles belong to the site, never to the npm package.
-5. Architecture docs live in `docs/architecture`, not mixed into component API docs.
-
----
-
 ## When *not* to use ReActicle
 
 - You're building a web app, dashboard, form-heavy product or generic landing page — go use a UI kit, not an article protocol.
@@ -481,16 +293,6 @@ Outputs `dist-report/report.html`, all CSS and JS inlined — the report opens w
 - You only need a single Markdown render — that's what Markdown is for.
 
 ReActicle is for when the deliverable **is the long-form HTML article itself**, especially when an AI agent is composing it.
-
----
-
-## Roadmap
-
-- More themes (community-driven)
-- Richer interaction primitives (long-form `Detail` patterns, in-article search)
-- Optional published `@reacticle/themes-*` packages once the surface stabilizes
-- Visual regression CI for theme integrity
-- Release workflow with provenance
 
 ---
 

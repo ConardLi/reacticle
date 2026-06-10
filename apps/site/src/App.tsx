@@ -19,6 +19,13 @@ import { ComponentDetailPage, componentDetailTocFor } from "./pages/ComponentDet
 import { ThemingPage, themingToc } from "./pages/Theming";
 import { ArchitecturePage, architectureToc } from "./pages/Architecture";
 import { GalleryIndexPage, GalleryReaderPage } from "./pages/Gallery";
+import { RawGuidePage, rawToc } from "./pages/RawGuide";
+import { ExportPage, exportToc } from "./pages/Export";
+import { SkillIntegrationPage, skillToc } from "./pages/SkillIntegration";
+import { RecipesPage, recipesToc } from "./pages/Recipes";
+import { FAQPage, faqToc } from "./pages/FAQ";
+import { ContributingPage, contributingToc } from "./pages/Contributing";
+import { MarkdownMigratePage, markdownToc } from "./pages/MarkdownMigrate";
 
 interface DocsPage {
   node: ReactNode;
@@ -41,6 +48,20 @@ function docsPage({ route, param }: RouteState): DocsPage | null {
       };
     case "theming":
       return { node: <ThemingPage />, toc: themingToc, key: "theming" };
+    case "raw":
+      return { node: <RawGuidePage />, toc: rawToc, key: "raw" };
+    case "export":
+      return { node: <ExportPage />, toc: exportToc, key: "export" };
+    case "skill":
+      return { node: <SkillIntegrationPage />, toc: skillToc, key: "skill" };
+    case "recipes":
+      return { node: <RecipesPage />, toc: recipesToc, key: "recipes" };
+    case "faq":
+      return { node: <FAQPage />, toc: faqToc, key: "faq" };
+    case "contributing":
+      return { node: <ContributingPage />, toc: contributingToc, key: "contributing" };
+    case "markdown":
+      return { node: <MarkdownMigratePage />, toc: markdownToc, key: "markdown" };
     case "architecture":
       return {
         node: <ArchitecturePage />,

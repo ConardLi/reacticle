@@ -11,6 +11,13 @@ export type Route =
   | "components"
   | "component"
   | "theming"
+  | "raw"
+  | "export"
+  | "skill"
+  | "recipes"
+  | "faq"
+  | "contributing"
+  | "markdown"
   | "gallery"
   | "architecture";
 
@@ -30,6 +37,13 @@ export function sectionOf(route: Route): Section {
       return "home";
     case "start":
     case "theming":
+    case "raw":
+    case "export":
+    case "skill":
+    case "recipes":
+    case "faq":
+    case "contributing":
+    case "markdown":
     case "architecture":
       return "guide";
     case "components":
@@ -63,6 +77,13 @@ function parseHash(): RouteState {
       param = seg[1];
     } else route = "components";
   } else if (seg[0] === "theming") route = "theming";
+  else if (seg[0] === "raw") route = "raw";
+  else if (seg[0] === "export") route = "export";
+  else if (seg[0] === "skill") route = "skill";
+  else if (seg[0] === "recipes") route = "recipes";
+  else if (seg[0] === "faq") route = "faq";
+  else if (seg[0] === "contributing") route = "contributing";
+  else if (seg[0] === "markdown") route = "markdown";
   else if (seg[0] === "gallery") {
     route = "gallery";
     if (seg[1]) param = seg[1];

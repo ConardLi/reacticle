@@ -72,6 +72,27 @@ ReActicle 是**运行时的组件协议**，它**不**规定编辑流程 —— 
 
 ---
 
+## 文档
+
+完整的开发与写作文档都在官方文档站 —— **<https://rearticle.mmh1.top/>**。README 只放介绍，其余教程一律去文档站。
+
+| 类别 | 页面 | 内容 |
+| --- | --- | --- |
+| **入门** | [开始使用](https://rearticle.mmh1.top/#/start) | 安装、最小骨架、构建与导出、缺失即可见 UX |
+| **主题** | [主题契约](https://rearticle.mmh1.top/#/theming) | `--ra-*` token 系统 · 主题为何是 `.css` + `.md` 双产物 · 如何新增主题 |
+| **写作** | [Raw 自由层守则](https://rearticle.mmh1.top/#/raw) | 何时该上 `<Raw>`、token 契约、反模式与提交前检查 |
+| | [导出与分发](https://rearticle.mmh1.top/#/export) | `ExportBar`、PDF / 单文件 HTML、`actionItemsToMarkdown` / `decisionToPrompt` |
+| | [写作配方](https://rearticle.mmh1.top/#/recipes) | 事故复盘、规格、随笔、解释文、决策、数学、Raw 交互的骨架代码 |
+| | [Markdown 迁移](https://rearticle.mmh1.top/#/markdown) | Markdown ↔ ReActicle 一对一映射表 |
+| **协作** | [与 Skill 集成](https://rearticle.mmh1.top/#/skill) | 与 `beautiful-article` Skill 的搭配（Source → Plan → Build → Review → Repair → Deliver） |
+| **参考** | [组件清单](https://rearticle.mmh1.top/#/components) | 每个组件：live 预览 + 属性表 + 可复制代码 |
+| | [主题图册](https://rearticle.mmh1.top/#/gallery) | 每个主题一篇示范长文 |
+| **工程** | [架构](https://rearticle.mmh1.top/#/architecture) | 工程边界、依赖原则、单文件构建 |
+| | [贡献指南](https://rearticle.mmh1.top/#/contributing) | 新增组件 / 主题 / Gallery 条目的 PR 检查清单 |
+| **答疑** | [FAQ](https://rearticle.mmh1.top/#/faq) | 概念、Raw、导出、缺失字段、安装、ReActicle 与邻居们的对比 |
+
+---
+
 ## [作品展示](https://mmh1.top/#/ai-article) —— 用 ReActicle + `beautiful-article` 写出来的文章
 
 下面是真实的长文，每一篇都是 AI Agent 跑 [`beautiful-article`](https://github.com/ConardLi/garden-skills) Skill、以 ReActicle 为组件协议端到端生成的。点封面进入 live 单文件 HTML。
@@ -153,182 +174,9 @@ ReActicle 是**运行时的组件协议**，它**不**规定编辑流程 —— 
 
 ---
 
-## 快速上手
-
-### 安装
-
-```bash
-npm install reacticle react react-dom
-```
-
-### 使用
-
-```tsx
-import {
-  ThemeProvider,
-  Article,
-  Hero,
-  Lead,
-  Section,
-  Summary,
-  Quote,
-  Raw,
-} from "reacticle";
-import "reacticle/styles.css";
-
-export default function App() {
-  return (
-    <ThemeProvider theme="tufte">
-      <Article width="regular">
-        <Hero
-          eyebrow="Field notes"
-          title="The geometry of meaning"
-          meta={{ author: "ConardLi", date: "2026-06-08" }}
-        />
-        <Lead>
-          一篇关于 embedding 空间如何把语义折成可度量几何的小笔记。
-        </Lead>
-
-        <Section title="当我们开始度量意义">
-          <p>
-            意义在这里不是一个标签，而是一个位置 —— 处在一个我们可以比较距离的空间里。
-          </p>
-          <Summary>
-            距离 ≠ 语义距离，但在多数编辑场景下是一个堪用的近似。
-          </Summary>
-          <Quote attribution="Edward R. Tufte">
-            Above all else show the data.
-          </Quote>
-        </Section>
-
-        <Section title="一个自定义视觉块">
-          <Raw>
-            {/* 任意 SVG / HTML / React，但必须用主题 token。 */}
-            <div
-              style={{
-                border: "1px solid var(--ra-rule)",
-                padding: "var(--ra-space-4)",
-                color: "var(--ra-fg)",
-                background: "var(--ra-surface)",
-                fontFamily: "var(--ra-font-display)",
-              }}
-            >
-              自定义块 · 仅使用 --ra-* token · 切主题时自动联动。
-            </div>
-          </Raw>
-        </Section>
-      </Article>
-    </ThemeProvider>
-  );
-}
-```
-
-### 切换主题
-
-```tsx
-<ThemeProvider theme="press">  {/* 可选：tufte · press · bayer · bodoni · vignelli · sottsass · freddie · andy · fuller · knuth · shannon */}
-  ...
-</ThemeProvider>
-```
-
-每个组件、每个 Raw 块、封面、打印样式 —— 改一行全部联动。
-
----
-
-## 在本仓库里开发
-
-本仓库是**单包组件库 + 统一站点**：
-
-- **组件库** —— 根包 `reacticle`。`src/` 是唯一可发布代码：组件、主题、导出工具、公共入口。
-- **统一站点** —— `apps/site` 把文档、组件 live 参考与 Gallery 合并成一个应用：一套视觉语言、一次部署。
-
-```bash
-npm install
-npm run dev          # 统一站点（文档 · 组件 · Gallery）
-```
-
-| 命令 | 作用 |
-| --- | --- |
-| `npm run dev` | 启动统一站点（文档 / 组件 / Gallery） |
-| `npm run build:lib` | 构建组件库产物 |
-| `npm run build:site` | 构建统一站点 |
-| `npm run build:report` | 构建自包含单页 HTML 报告 |
-| `npm run build` | 依次构建组件库与站点 |
-| `npm run preview:site` | 预览站点构建产物 |
-| `npm run typecheck` | 全工程类型检查 |
-
-```text
-src/
-  components/            语义组件
-  theme/                 token 契约、主题、打印样式
-  export/                PDF / 复制 / 导出工具
-  index.ts               唯一公共入口
-
-apps/
-  site/                  统一站点：文档 + 组件参考 + Gallery + 单页报告构建
-
-docs/architecture/       工程边界文档
-```
-
-完整架构：[`docs/architecture/engineering-architecture.md`](./docs/architecture/engineering-architecture.md)
-ReActicle vs Markdown 覆盖对照：[`docs/markdown-coverage-plan.md`](./docs/markdown-coverage-plan.md)
-
----
-
-## 组件清单
-
-外部消费者只允许从包入口导入：
-
-```tsx
-import { ThemeProvider, Article, Hero, Section } from "reacticle";
-```
-
-| 类别 | 组件 |
-| --- | --- |
-| **结构** | `Article`, `Hero`, `Lead`, `Section`, `Subsection`, `TOC`, `Conclusion` |
-| **观点** | `Summary`, `Aside`, `Quote` |
-| **媒体** | `Image`, `Video`, `Audio` |
-| **数据** | `Table` |
-| **决策** | `RiskList`, `Decision`, `ActionList`, `Checkpoint`, `Tradeoff`, `Incident` |
-| **技术** | `CodeBlock`, `Formula`, `DiffReview`, `HighlightedCode` |
-| **交互壳** | `Detail`, `Tabs` |
-| **自由层** | `Raw` |
-| **导出** | `ExportBar`, `actionItemsToMarkdown`, `decisionToPrompt`, `copyToClipboard` |
-
----
-
-## 主题系统
-
-ReActicle 自带 11 套主题，每一套都是一份完整的编辑系统：
-
-| 主题 | 气质 |
-| --- | --- |
-| `tufte` | Edward Tufte / data-ink，证据优先 |
-| `press` | Stripe Press / 书卷长读物 |
-| `bayer` | 包豪斯 / Herbert Bayer 几何编辑 |
-| `bodoni` | 高对比 didone / 时尚编辑 |
-| `vignelli` | Massimo Vignelli / Helvetica 网格系统 |
-| `sottsass` | Memphis / 后现代俏皮 |
-| `freddie` | Mailchimp Freddie / 亲和插画 |
-| `andy` | Andy Warhol / 波普丝印 |
-| `fuller` | Buckminster Fuller / 工程蓝图 |
-| `knuth` | Donald Knuth / Computer Modern，技术出版 |
-| `shannon` | 贝尔实验室 / Shannon 技术论文 |
-
-每套主题都是**两份产物**：
-
-1. `<theme>.css` —— `--ra-*` token 包与选择器。
-2. `<theme>.md` —— 给 AI 读的 authoring profile，**写之前**必须读。它必须写清：
-   - **代码与公式风格** —— `CodeBlock` / `Formula` 的高亮、行号、公式留白与 Prism token 配色如何呼应主题气质。
-   - **媒体风格** —— `Image` / `Video` / `Audio` 适合哪种摄影、截图、图表、视频、音频纹理；明确禁止哪些气质。
-   - **Raw 自由层风格** —— Raw 中的 SVG / 交互 / 动画应该用什么线条、动效、密度、token 用法。
-   - **反模式** —— 列出会破坏主题人格的图片、图标、渐变、卡片、动效、插画、截图和 Raw 套路。
-
-这就是主题能扛住 AI 写作的原因 —— Agent 不能随便选视觉，它要**选主题文档允许的视觉**。
-
----
-
 ## [主题图册](https://rearticle.mmh1.top/#/gallery) —— 每个主题一篇示范长文
+
+> 11 套主题，每套都是一份完整编辑系统。完整的主题契约（`.css` token 包 + `.md` authoring profile、反模式、代码 / 媒体风格）见 [Theming](https://rearticle.mmh1.top/#/theming)。
 
 每套主题都附带一篇**示范长文**，从排版、摄影、代码、公式到 Raw 自由块全部贯彻该主题人格。点封面进入 live 单文件 HTML。
 
@@ -438,39 +286,6 @@ ReActicle 自带 11 套主题，每一套都是一份完整的编辑系统：
 
 ---
 
-## 统一站点（`apps/site`）
-
-`apps/site` 是 `reacticle` 唯一的真实消费者，只走公共入口、不引内部目录。设计语言为 **Editorial Console**：暖墨 / 纸双模式（Paper / Ink）、编辑级衬线 + monospace UI、发丝线工程感、单一 Tufte 朱红强调色。站点自己的设计 token 在 `--rd-*` 命名空间，与库的 `--ra-*` 完全隔离。
-
-站点结构：
-
-- **概览** —— 协议主张、live 迷你文章、设计原则、组件目录
-- **开始使用** —— 安装、最小骨架、构建与导出、缺失即可见 UX
-- **组件** —— 每个组件 live 预览 + 属性表 + 可复制代码
-- **主题** —— token 契约、tufte 案例、新增主题路径
-- **Gallery** —— 真实报告 + 主题切换
-- **架构** —— 工程边界与依赖原则
-
-### 自包含单页报告
-
-```bash
-npm run build:report
-```
-
-产物 `dist-report/report.html`，CSS / JS 全内联，断网可开。
-
----
-
-## 边界原则
-
-1. 组件库不依赖站点。
-2. 站点只能通过 `reacticle` 公共入口消费组件。
-3. 主题属于组件库；主题预览与主题说明都在站点。
-4. 示例文章属于站点，不放进组件库 npm 包。
-5. 架构文档放在 `docs/architecture`，不混进组件 API 文档。
-
----
-
 ## 什么时候**不**该用 ReActicle
 
 - 你要做的是网页应用 / dashboard / 表单密集型产品 / 通用 landing page —— 去用 UI kit，不要用文章协议。
@@ -478,16 +293,6 @@ npm run build:report
 - 你只需要渲染一段 Markdown —— 那是 Markdown 该做的事。
 
 ReActicle 适合**当交付物本身就是那篇 HTML 长文**的场景，尤其是当 AI Agent 在写它。
-
----
-
-## 路线图
-
-- 更多主题（社区共建）
-- 更丰富的交互原语（长文 `Detail` 模式、文内搜索）
-- 表面稳定后拆出 `@reacticle/themes-*` 系列子包
-- 主题完整性的视觉回归 CI
-- 带 provenance 的发布工作流
 
 ---
 
